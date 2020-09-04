@@ -1,5 +1,5 @@
 import { LOGIN_FORM_CHANGE, LOGIN_FORM_SUBMIT, LOGIN_FORM_CLEANUP, POST_LOGIN, LOGIN_SUCCESS } from './type.js'
-import {HEADERS, API_ROOT} from '../../constants'
+import {HEADERS, API_ROOT} from '../../Constants'
 function loginFormCleanup() {
     return {
         type: LOGIN_FORM_CLEANUP
@@ -37,7 +37,7 @@ function loginFormSubmit(e, form) {
             //     'Accept': 'application/json',
             //     'Content-Type': 'application/json'
             // },
-            headers: HEADERS
+            headers: HEADERS,
             body: JSON.stringify({
                 username: form.username,
                 password: form.password
