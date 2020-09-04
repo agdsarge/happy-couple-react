@@ -1,5 +1,5 @@
 import { LOGIN_FORM_CHANGE, LOGIN_FORM_SUBMIT, LOGIN_FORM_CLEANUP, POST_LOGIN, LOGIN_SUCCESS } from './type.js'
-
+import {HEADERS, API_ROOT} from '../../constants'
 function loginFormCleanup() {
     return {
         type: LOGIN_FORM_CLEANUP
@@ -31,13 +31,14 @@ function loginFormSubmit(e, form) {
     return (dispatch) => {
         e.preventDefault()
         dispatch(fetchLogin())
-        fetch('http://localhost:3005/api/v1/login', {
+        fetch(`${API_ROOT}/login`, {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+            headers: HEADERS
+            body: JSON.stringify({
                 username: form.username,
                 password: form.password
                         })

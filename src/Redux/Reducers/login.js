@@ -8,7 +8,7 @@ const initialState = {
 const reducer = ( oldState = initialState, action ) => {
     switch(action.type) {
         case LOGIN_FORM_CHANGE:
-            return {}
+            return {...oldState, ...action.payload}
         case LOGIN_FORM_SUBMIT:
             return {}
         case LOGIN_FORM_CLEANUP:
