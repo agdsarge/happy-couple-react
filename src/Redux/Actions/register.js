@@ -42,7 +42,7 @@ function registerFormSubmit(e, form) {
                 last_name: form.last_name,
                 email: form.email,
                 password: form.password,
-                address: form.address
+                gender: form.gender
             })
         })
         .then(res => res.json())
