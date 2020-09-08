@@ -1,4 +1,4 @@
-import { LOGIN_FORM_CHANGE, LOGIN_FORM_SUBMIT, LOGIN_FORM_CLEANUP, POST_LOGIN, LOGIN_SUCCESS } from './type.js'
+import { LOGIN_FORM_CHANGE, LOGIN_FORM_SUBMIT, LOGIN_FORM_CLEANUP, POST_LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE } from './type.js'
 import {HEADERS, API_ROOT} from '../../Constants'
 function loginFormCleanup() {
     return {
@@ -20,6 +20,13 @@ function loginSuccess(user) {
     }
 }
 
+function loginFailure(err) {
+    return {
+        type: LOGIN_FAILURE,
+        payload: err
+    }
+}
+
 function fetchLogin(){
     return {
         type: POST_LOGIN,
@@ -33,10 +40,6 @@ function loginFormSubmit(e, form) {
         dispatch(fetchLogin())
         fetch(`${API_ROOT}/login`, {
             method: 'POST',
-            // headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            // },
             headers: HEADERS,
             body: JSON.stringify({
                 username: form.username,
@@ -57,4 +60,4 @@ function loginFormSubmit(e, form) {
 }
 
 
-export { loginFormCleanup, loginFormChange, loginFormSubmit, loginSuccess }
+export { loginFormCleanup, loginFormChange, loginFormSubmit, loginSuccess, loginFailure }
