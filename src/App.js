@@ -8,6 +8,7 @@ import './App.css';
 import LoginContainer from './Containers/Login/LoginContainer';
 import RegisterContainer from './Containers/Register/RegisterContainer';
 import Home from './Containers/Home/Home';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 class App extends Component {
   
@@ -16,9 +17,10 @@ class App extends Component {
       <div className="App">
        
       <Switch>
+        <ProtectedRoute isAuth={this.props.isAuth} path='/home' component={ Home } />
         <Route exact path='/login' render={() => < LoginContainer /> } />
         <Route exact path='/register' render={() => < RegisterContainer /> } />
-        <Route exact path='/home' render={() => < Home /> } />
+
       </Switch>
   
   
@@ -29,13 +31,12 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    
+    isAuth: !!state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-
   }
 }
 
