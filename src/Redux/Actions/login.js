@@ -42,18 +42,26 @@ function loginFormSubmit(e, form) {
             method: 'POST',
             headers: HEADERS,
             body: JSON.stringify({
-                username: form.username,
+                email: form.email,
                 password: form.password
-                        })
+            })
         })
-        .then( r => r.json() )
-        .then( user => {
-            if (user.token !== undefined) {
-                localStorage.setItem('token', user.token)
-                localStorage.setItem('first_name', user.first_name)
-            }
-            dispatch(loginSuccess(user))
-            dispatch(loginFormCleanup())
+        .then( r => r.json())
+        .then( data => {
+            if (data.error) {
+                dispatch(loginFailure(data.message))
+            } else {
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', data.token)
+                    localStorage.setItem('first_name', data.first_name)
+                }
+                dispatch(loginSuccess(data))
+                dispatch(loginFormCleanup())
+            }       
+        })
+        .catch((err) => {
+            console.log(err)
+            // dispatch(loginFailure(err))
         })
         // error handle with catch()
     }

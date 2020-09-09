@@ -14,6 +14,8 @@ class LoginContainer extends Component {
         this.props.handleCleanup()
     }
 
+    
+
     render() {
         // what we want is a box in the middle
         // in the box 'header' there are two tabs. the active one is login
@@ -21,12 +23,16 @@ class LoginContainer extends Component {
         // inside the box are two text fields, email and password
         // there is also a submit button
         return (
-            <div className='LoginContainer'>
 
+
+            <div className='LoginContainer'>
                 <p>login form 0.1</p>
+                <div className='LoginErrorContainer' >
+                    {this.props.error ? <p style={{color:'red'}}>{this.props.error}</p> : null }
+                </div>
                 <Container >
                     <CssBaseline />
-                    <form onSubmit={this.props.handleSubmit}>
+                    <form onSubmit={(e) => this.props.handleSubmit(e, this.props.form)}>
                         <TextField
                             required
                             name='email'
@@ -63,15 +69,17 @@ class LoginContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        form: state.login,
         email: state.login.email,
-        password: state.login.password
+        password: state.login.password,
+        error: state.login.error
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleChange: e => {dispatch(loginFormChange(e))},
-        handleSubmit: e => {dispatch(loginFormSubmit(e))},
+        handleSubmit: (e, form) => {dispatch(loginFormSubmit(e, form))},
         handleCleanup: () => {dispatch(loginFormCleanup())}
     }
 }

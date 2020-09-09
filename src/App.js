@@ -9,6 +9,7 @@ import LoginContainer from './Containers/Login/LoginContainer';
 import RegisterContainer from './Containers/Register/RegisterContainer';
 
 class App extends Component {
+  
   render () {
     return (
       <div className="App">
