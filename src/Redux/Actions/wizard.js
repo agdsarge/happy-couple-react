@@ -44,7 +44,7 @@ function wizardFailure(err) {
 function wizardSubmit(e, form) {
     return (dispatch) => {
         e.preventDefault()
-        fetch(`${API_ROOT}/register`, {
+        fetch(`${API_ROOT}/setup`, {
             method: 'POST',
             headers: HEADERS,
             body: JSON.stringify(form)
