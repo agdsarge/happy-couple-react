@@ -1,3 +1,4 @@
+
 import {WIZARD_FORM_CHANGE, WIZARD_PAGE_CHANGE, WIZARD_CLEANUP, WIZARD_SUBMIT, WIZARD_SUCCESS, WIZARD_FAILURE} from '../Actions/type';
 
 const initialState = {
@@ -33,7 +34,7 @@ const reducer = (oldState=initialState, action) => {
         case WIZARD_FORM_CHANGE:
             return {...oldState};
         case WIZARD_PAGE_CHANGE:
-            return {...oldState, page: action.payload};
+            return {...oldState, page: (oldState.page + action.payload)};
         case WIZARD_CLEANUP:
             return initialState;
         case WIZARD_FAILURE:

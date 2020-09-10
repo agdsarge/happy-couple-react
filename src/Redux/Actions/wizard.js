@@ -1,13 +1,12 @@
+
 import {WIZARD_FORM_CHANGE, WIZARD_PAGE_CHANGE, WIZARD_CLEANUP, WIZARD_SUBMIT, WIZARD_SUCCESS, WIZARD_FAILURE} from './type.js'
 
 import {HEADERS, API_ROOT} from '../../Constants'
 
-function wizardPageChange(e) {
+function wizardPageChange(changeValue) {
     return {
         type: WIZARD_PAGE_CHANGE,
-        payload: {
-            [e.target.name]: e.target.value
-        }   
+        payload: changeValue   
     }
 }
 

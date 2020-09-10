@@ -1,0 +1,22 @@
+div.Wizard-control-panel {
+    margin: auto;
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  div.wiz-directional-button {
+    background-color: rgb(72, 168, 247);
+    height: 1.5rem;
+    line-height: 1.5rem;
+    width: 100px;
+    border-radius: 8px;
+  }
+  
+  div.wiz-submit-button {
+    background-color: rgb(32, 197, 115);
+    height: 1.5rem;
+    line-height: 1.5rem;
+    width: 100px;
+    border-radius: 8px;
+  }
