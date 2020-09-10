@@ -1,0 +1,77 @@
+div.Loading-container {
+    height: 20vh;
+    width: 40vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: flex;
+}
+
+div.Loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+div.Loading-heart {
+    margin: 0 .3rem 0 .3rem;
+    height: 4rem;
+    width: 4rem;
+    background-image: url('../Assets/Images/Heart.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div#lh1 {
+    
+    animation: bounce 2s infinite;
+    animation-timing-function: ease;
+}
+div#lh2 {
+   
+    animation: bounce2 2s infinite;
+    animation-delay: .5s;
+    animation-timing-function: ease;
+}
+div#lh3 {
+    
+    animation: bounce3 2s infinite;
+    animation-delay: 1s;
+    animation-timing-function: ease;
+}
+div#lh4 {
+   
+    animation: bounce4 2s infinite;
+    animation-delay: 1.5s;
+    animation-timing-function: ease;
+}
+
+@keyframes bounce {
+    0%  {transform: translateY(0rem);}
+  33% {transform: translateY(-6rem);}
+  /* 66% {transform: translateY(-20px);} */
+  100% {transform: translateY(0rem);}
+}
+@keyframes bounce2 {
+    0%  {transform: translateY(0rem);}
+    33% {transform: translateY(-6rem);}
+    /* 66% {transform: translateY(-40);} */
+    100% {transform: translateY(0rem);}
+}
+@keyframes bounce3 {
+    0%  {transform: translateY(0rem);}
+    33% {transform: translateY(-6rem);}
+    /* 66% {transform: translateY(-40);} */
+    100% {transform: translateY(0rem);}
+}
+@keyframes bounce4 {
+    0%  {transform: translateY(0rem);}
+    33% {transform: translateY(-6rem);}
+    /* 66% {transform: translateY(-40);} */
+    100% {transform: translateY(0rem);}
+}
