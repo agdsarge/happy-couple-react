@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {API_ROOT} from '../Constants'
+import { weddingDate } from '../Redux/Actions/weddingDetails'
+
+import {API_ROOT} from '../Constants';
 
 class Countdown extends Component {
     componentDidMount() {
-        console.log("COUNTDOWN ID", this.props.id)
-        fetch(`${API_ROOT}/date/${this.props.id}`)
-        .then(r => r.json())
-        // .then(dispatch action to set date)
+        console.log(this.props.getWeddingDate)
     }
     render() {
         return (
             <div>
-                
+                <p> this is a countdown </p>
             </div>
         )
     }
@@ -20,9 +19,17 @@ class Countdown extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.auth.token,
+        // id: state.auth.token,
         weddingDate: state.weddingDetails.date
     }
 }
 
-export default connect(mapStateToProps)(Countdown)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getWeddingDate: () => {
+            dispatch(weddingDate())
+        }
+    }   
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Countdown)
