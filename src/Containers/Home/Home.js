@@ -10,7 +10,9 @@ class Home extends Component {
             <div>
                 < Navbar />
                 <p>Hello Couple</p>
+                < Countdown />
                 < Wizard />
+
             </div>
         )
     }

@@ -7,6 +7,7 @@ import {API_ROOT} from '../Constants';
 class Countdown extends Component {
     componentDidMount() {
         console.log(this.props.getWeddingDate)
+        this.props.getWeddingDate()
     }
     render() {
         return (
