@@ -83,7 +83,7 @@ const mapStateToProps = (state) => {
     email: state.login.email,
     password: state.login.password,
     error: state.login.error,
-    isLogged: state.auth.token !== null,
+    isLogged: !!state.auth.token,
     loading: state.auth.loading
   };
 };

@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import {registerFormChange, registerFormCleanup, registerFormSubmit} from '../../Redux/Actions/register'
+
+import Loading from '../../Components/Loading'
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -11,10 +14,19 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 class RegisterContainer extends Component {
+    
     render() {
+        if (this.props.isLogged) {
+            return < Redirect to='/home' />
+        }
+
+        if (this.props.loading) {
+            return < Loading />
+        }
+
         return (
             <div> 
-                <p>SOME JSX</p>
+
                 <form onSubmit={(e) => this.props.handleSubmit(e, this.props.form)}>
                     <TextField 
                         required
@@ -83,7 +95,9 @@ const mapStateToProps = (state) => {
         last_name: state.register.last_name,
         email: state.register.email,
         gender: state.register.gender,
-        password: state.register.password
+        password: state.register.password,
+        isLogged: !!state.auth.token,
+        loading: state.auth.loading
     }
 }
 

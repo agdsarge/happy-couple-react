@@ -1,4 +1,5 @@
-import {REGISTER_FORM_CHANGE, REGISTER_FORM_CLEANUP, REGISTER_FORM_SUBMIT, REGISTER_SUCCESS, REGISTER_FAILURE} from './type.js'
+import {REGISTER_FORM_CHANGE, REGISTER_FORM_CLEANUP, REGISTER_FORM_SUBMIT, REGISTER_SUCCESS, REGISTER_FAILURE, LOGIN_SUCCESS} from './type.js'
+import {loginSuccess} from './login'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function registerFormChange(e) {
@@ -51,7 +52,7 @@ function registerFormSubmit(e, form) {
                 localStorage.setItem('token', user.token)
                 localStorage.setItem('first_name', user.first_name)
             }
-            dispatch(registerSuccess(user))
+            dispatch(loginSuccess(user))
             dispatch(registerFormCleanup())
         })
         //.catch()
