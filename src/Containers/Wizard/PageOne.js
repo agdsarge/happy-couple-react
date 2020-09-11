@@ -33,7 +33,7 @@ class PageOne extends Component {
                   <TextField required name="partnerOne"
                     id="wiz-email1"
                     label="Enter Partner 1 Email"
-                    value={this.props.email1}
+                    value={this.props.partnerOne}
                     onChange={(e) => this.props.handleChangeForm(e, formType)}
                   />
                   <br />
@@ -41,7 +41,7 @@ class PageOne extends Component {
                     required name="partnerTwo"
                     id="wiz-email2"
                     label="Enter Partner 2 Email"
-                    value={this.props.email2}
+                    value={this.props.partnerTwo}
                     onChange={(e) => this.props.handleChangeForm(e, formType)}
                   />
                   <br />
