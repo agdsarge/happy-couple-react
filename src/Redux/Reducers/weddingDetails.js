@@ -1,4 +1,4 @@
-// import {REGISTER_FORM_SUBMIT, REGISTER_FORM_CHANGE, REGISTER_FORM_CLEANUP, REGISTER_SUCCESS, REGISTER_FAILURE} from '../Actions/type'
+import {SET_DATE, LOGOUT} from '../Actions/type'
 
 
 const initialState = {
@@ -7,6 +7,10 @@ const initialState = {
 
 function reducer (oldState= initialState, action) {
     switch (action.type) {
+        case SET_DATE:
+            return {...oldState, date: action.payload}
+        case LOGOUT:
+            return initialState
         default:
             return oldState
     }

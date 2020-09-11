@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { weddingDate } from '../Redux/Actions/weddingDetails'
+import { getWeddingDate } from '../Redux/Actions/weddingDetails'
 
 import {API_ROOT} from '../Constants';
 
 class Countdown extends Component {
     componentDidMount() {
-        console.log(this.props.getWeddingDate)
         this.props.getWeddingDate()
     }
     render() {
-        return (
+        
+        function countTheDays(date) {
+            let today = Date.parse(new Date())
+            let millisecondsLeft= (Date.parse(date) - today)
+            let daysLeft =  Math.ceil(millisecondsLeft / (1000 * 60 * 60 * 24))
+            switch (daysLeft) {
+                case 0:
+                    return 'Today is the wedding day!'
+                case 1:
+                    return 'Tomorrow is the wedding day!'
+                case 7:
+                    return '1 week until the wedding!'
+                default:
+                    return `${daysLeft} days until the wedding!`
+            }
+        }  
+        // should probably make this grammatical.
+        // could do fun things like 1 week to go.
+        return (     
             <div>
-                <p> this is a countdown </p>
+                <p>{countTheDays(this.props.weddingDate)}</p>
             </div>
         )
     }
@@ -20,7 +37,7 @@ class Countdown extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // id: state.auth.token,
+        
         weddingDate: state.weddingDetails.date
     }
 }
@@ -28,7 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getWeddingDate: () => {
-            dispatch(weddingDate())
+            dispatch(getWeddingDate())
         }
     }   
 }
