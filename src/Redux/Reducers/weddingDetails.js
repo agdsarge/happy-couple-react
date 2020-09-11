@@ -1,4 +1,4 @@
-import {SET_DATE} from '../Actions/type'
+import {SET_DATE, LOGOUT} from '../Actions/type'
 
 
 const initialState = {
@@ -9,6 +9,8 @@ function reducer (oldState= initialState, action) {
     switch (action.type) {
         case SET_DATE:
             return {...oldState, date: action.payload}
+        case LOGOUT:
+            return initialState
         default:
             return oldState
     }
