@@ -10,9 +10,10 @@ function wizardPageChange(changeValue) {
     }
 }
 
-function wizardFormChange(e) {
+function wizardFormChange(e, some_key) {
     return {
         type: WIZARD_FORM_CHANGE,
+        key: some_key,
         payload: {
             [e.target.name]: e.target.value
         }   

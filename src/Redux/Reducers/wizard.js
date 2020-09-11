@@ -3,16 +3,20 @@ import {WIZARD_FORM_CHANGE, WIZARD_PAGE_CHANGE, WIZARD_CLEANUP, WIZARD_SUBMIT, W
 
 const initialState = {
     createWedding: {
-        weddingDate: null,
-        couple: [{}, {}],
-        theme: null,
-        fontFamily: null,
-        slug: null,
-        registryLink: null,
+        general: {
+            weddingDate: null,
+            partnerOne: null,
+            partnerTwo: null,
+            theme: "1",
+            fontFamily: "1",
+            slug: null,
+            registryLink: null,
+        },
         reception: {
             venueName: null, 
             venueStreet: null, 
             venueCity: null, 
+            venueState: null, 
             venueCountry: null, 
             venueZipCode: null, 
         },
@@ -20,6 +24,7 @@ const initialState = {
             venueName: null, 
             venueStreet: null, 
             venueCity: null, 
+            venueState: null, 
             venueCountry: null, 
             venueZipCode: null, 
         }
@@ -32,7 +37,13 @@ const initialState = {
 const reducer = (oldState=initialState, action) => {
     switch (action.type) {
         case WIZARD_FORM_CHANGE:
-            return {...oldState};
+            if (action.key === 'general') {
+                return {...oldState, createWedding: {...oldState.createWedding, general: {...oldState.createWedding.general, ...action.payload}}};
+            } else if (action.key === 'ceremony') {
+                return {...oldState, createWedding: {...oldState.createWedding, ceremony: {...oldState.createWedding.ceremony, ...action.payload}}};
+            } else {
+                return {...oldState, createWedding: {...oldState.createWedding, reception: {...oldState.createWedding.reception, ...action.payload}}};
+            }
         case WIZARD_PAGE_CHANGE:
             return {...oldState, page: (oldState.page + action.payload)};
         case WIZARD_CLEANUP:
