@@ -50,19 +50,11 @@ class PageOne extends Component {
                   <TextField id="select" name='theme' 
                   label="Choose Wedding Theme" value={this.props.theme} 
                   onChange={(e) => this.props.handleChangeForm(e, formType)} select>
-                      <MenuItem value="1">Sunset</MenuItem>
-                      <MenuItem value="2">Classic</MenuItem>
-                      <MenuItem value="3">Elegant</MenuItem>
+                      <MenuItem value="sunset">Sunset</MenuItem>
+                      <MenuItem value="classic">Classic</MenuItem>
+                      <MenuItem value="elegant">Elegant</MenuItem>
                   </TextField>
                   <br />
-                  Font Family
-                  <TextField id="select" name='fontFamily' 
-                  label="Choose a Font" value={this.props.fontFamily} 
-                  onChange={(e) => this.props.handleChangeForm(e, formType)} select>
-                      <MenuItem value="1">Serif</MenuItem>
-                      <MenuItem value="2">Sans Serif</MenuItem>
-                      <MenuItem value="3">Times New Roman</MenuItem>
-                  </TextField>
               <br />
               <br />
               <TextField

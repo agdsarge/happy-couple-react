@@ -42,15 +42,20 @@ function wizardFailure(err) {
 }
 
 function wizardSubmit(e, form) {
+    console.log(form, HEADERS)
     return (dispatch) => {
         e.preventDefault()
         fetch(`${API_ROOT}/setup`, {
             method: 'POST',
-            headers: HEADERS,
+            headers: {
+                ...HEADERS, 
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
             body: JSON.stringify(form)
         })
         .then(res => res.json())
         .then(user => {
+            console.log(user)
             if (user.token !== undefined) {
                 localStorage.setItem('token', user.token)
                 localStorage.setItem('first_name', user.first_name)
