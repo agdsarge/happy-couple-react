@@ -11,25 +11,30 @@ class Countdown extends Component {
     render() {
         
         function countTheDays(date) {
-            let today = Date.parse(new Date())
-            let millisecondsLeft= (Date.parse(date) - today)
-            let daysLeft =  Math.ceil(millisecondsLeft / (1000 * 60 * 60 * 24))
-            switch (daysLeft) {
-                case 0:
-                    return 'Today is the wedding day!'
-                case 1:
-                    return 'Tomorrow is the wedding day!'
-                case 7:
-                    return '1 week until the wedding!'
-                default:
-                    return `${daysLeft} days until the wedding!`
-            }
+            if (date)  {
+                let today = Date.parse(new Date())
+                let millisecondsLeft= (Date.parse(date) - today)
+                let daysLeft =  Math.ceil(millisecondsLeft / (1000 * 60 * 60 * 24))
+                let mesg
+                switch (daysLeft) {
+                    case 0:
+                        mesg =  'Today is the wedding day!'
+                    case 1:
+                        mesg =  'Tomorrow is the wedding day!'
+                    case 7:
+                        mesg =  '1 week until the wedding!'
+                    default:
+                        mesg =  `${daysLeft} days until the wedding!`
+                }
+                return <p> {mesg} </p>
+            } else {
+                return null
+            }  
         }  
-        // should probably make this grammatical.
-        // could do fun things like 1 week to go.
-        return (     
+        
+        return (
             <div>
-                <p>{countTheDays(this.props.weddingDate)}</p>
+                {countTheDays(this.props.weddingDate)}
             </div>
         )
     }
@@ -37,7 +42,6 @@ class Countdown extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        
         weddingDate: state.weddingDetails.date
     }
 }

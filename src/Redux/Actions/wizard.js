@@ -42,7 +42,6 @@ function wizardFailure(err) {
 }
 
 function wizardSubmit(e, form) {
-    console.log(form, HEADERS)
     return (dispatch) => {
         e.preventDefault()
         fetch(`${API_ROOT}/setup`, {

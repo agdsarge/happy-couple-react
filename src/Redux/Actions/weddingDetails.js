@@ -9,15 +9,18 @@ function weddingDate(date) {
 }
 
 function getWeddingDate() {
-    // console.log('now in weddingDate')
     return dispatch => {
         fetch(`${API_ROOT}/date`, {
-            headers: HEADERS
+            headers: {
+                ...HEADERS,
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            dispatch(weddingDate(data.weddingDate))
+            if (data.weddingDate) {
+                dispatch(weddingDate(data.weddingDate))
+            }
         })
     }
 }
