@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getWeddingDate } from '../Redux/Actions/weddingDetails'
 
-import {API_ROOT} from '../Constants';
-
 class Countdown extends Component {
     componentDidMount() {
         this.props.getWeddingDate()
@@ -19,10 +17,13 @@ class Countdown extends Component {
                 switch (daysLeft) {
                     case 0:
                         mesg =  'Today is the wedding day!'
+                        break;
                     case 1:
                         mesg =  'Tomorrow is the wedding day!'
+                        break;
                     case 7:
                         mesg =  '1 week until the wedding!'
+                        break;
                     default:
                         mesg =  `${daysLeft} days until the wedding!`
                 }
