@@ -1,0 +1,12 @@
+div.ToDo-wrapper {
+    width: 50vw;
+    margin: auto;
+}
+div.ToDo-list-item {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+p.ToDo-item-text {
+    text-align: left;
+}
