@@ -10,7 +10,6 @@ class Toggle extends Component {
     render() {
         return (
             <div>
-                
                 <ButtonGroup  color="primary" aria-label="outlined primary button group">
                     <Button onClick={e => this.props.handleClick(e)} name='listView' > list</Button> 
                     <Button onClick={e => this.props.handleClick(e)} name='iconView' > icon </Button>
