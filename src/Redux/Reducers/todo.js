@@ -1,7 +1,8 @@
-import {TODO_FILTER, TODO_TOGGLE, TODO_CLEANUP, TODO_SUBMIT} from '../Actions/type';
+import {TODO_FILTER, TODO_TOGGLE, TODO_CLEANUP, TOGGLE_TODO_MENU, TODO_SUBMIT} from '../Actions/type';
 
 let initialState = {
     isFiltered: false,
+    isOpen: false,
     todoList: [{task: "Guest List", isCompleted: false},
                 {task: "Upload Photos for Gallery", isCompleted: false},
                 {task: "Info for Reception", isCompleted: true},
@@ -18,6 +19,8 @@ const reducer = (oldState = initialState, action) => {
             return {...oldState, todoList: [...newArray]};
         case TODO_FILTER:
             return {...oldState, isFiltered: !oldState.isFiltered}
+        case TOGGLE_TODO_MENU:
+            return {...oldState, isOpen: !oldState.isOpen}
         case TODO_SUBMIT:
             return initialState;
         default: 

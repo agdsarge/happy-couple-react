@@ -25,6 +25,7 @@ export const WIZARD_FAILURE = 'WIZARD_FAILURE';
 // TODO ACTION TYPES
 export const TODO_FILTER = 'TODO_FILTER';
 export const TODO_TOGGLE = 'TODO_TOGGLE';
+export const TOGGLE_TODO_MENU = 'TOGGLE_TODO_MENU';
 export const TODO_CLEANUP = 'TODO_CLEANUP';
 export const TODO_SUBMIT = 'TODO_SUBMIT';
 export const TODO_SUCCESS = 'TODO_SUCCESS';

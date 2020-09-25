@@ -1,4 +1,4 @@
-import {TODO_CLEANUP, TODO_FILTER, TODO_TOGGLE, TODO_FAILURE, TODO_SUBMIT, TODO_SUCCESS} from './type'
+import {TODO_CLEANUP, TODO_FILTER, TODO_TOGGLE, TOGGLE_TODO_MENU, TODO_SUBMIT, TODO_SUCCESS} from './type'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function todoCleanup(){
@@ -14,6 +14,7 @@ function todoSuccess(){
 }
 
 function todoSubmit(form){
+    console.log('hello')
     return (dispatch) => {
         fetch(`${API_ROOT}/todos`, {
             method: 'POST',
@@ -38,10 +39,18 @@ function todoToggle(todo){
     }
 }
 
+function toggleTodoMenu(){
+    return {
+        type: TOGGLE_TODO_MENU
+    }
+}
+
+
+
 function todoFilter(){
     return {
         type: TODO_FILTER
     }
 }
 
-export {todoCleanup, todoToggle, todoFilter, todoSubmit}
+export {todoCleanup, todoToggle, todoFilter, todoSubmit, toggleTodoMenu}
