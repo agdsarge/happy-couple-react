@@ -3,6 +3,7 @@ import Navbar from '../../Components/Navbar'
 import Countdown from '../../Components/Countdown'
 import Wizard from '../Wizard/Wizard'
 import ToDo from '../ToDo/ToDo'
+import Toggle from '../../Components/Toggle'
 
 class Home extends Component {
     render() {
@@ -11,6 +12,8 @@ class Home extends Component {
             <div>
                 < Navbar />
                 <p>Hello Couple</p>
+                <Toggle ></Toggle>
+                {/* {this.props.viewToggle ? <ListView /> : <IconView />} */}
                 < Countdown />
                 < Wizard />
 

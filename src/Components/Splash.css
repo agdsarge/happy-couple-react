@@ -1,14 +1,25 @@
-
-
 div.splash-div {
     margin-top: 110px;
     margin-right: 110px;
     padding-right: 10px;
     margin-top: 150px;
     width: 30%;
-    background-color: rgba(17, 121, 121, 0.372);
+    /* background-color: rgba(17, 121, 121, 0.372); */
+    /* background-color: rgba(26, 27, 27, 0.372); */
+    backdrop-filter: blur(.3rem);
+    
     float: right;
     text-align: right;
     color: whitesmoke;
 
+}
+
+h1 {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+h2 {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
