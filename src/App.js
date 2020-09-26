@@ -19,6 +19,7 @@ class App extends Component {
         
         <Switch>
           <ProtectedRoute isAuth={this.props.isAuth} path='/home' component={ Home } />
+          <ProtectedRoute isAuth={this.props.isAuth} path='/home/:id' component={ Home } />
           <Route exact path='/login' render={() => < LoginContainer /> } />
           <Route exact path='/register' render={() => < RegisterContainer /> } />
           <Route exact path='/' render={() => < Splash /> } />
