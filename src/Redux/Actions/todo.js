@@ -22,7 +22,7 @@ function todoSubmit(form){
                 ...HEADERS, 
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify({todoList: form})
         })
         .then(r => r.json())
         .then(data => {           
