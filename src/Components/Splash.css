@@ -4,9 +4,10 @@ div.splash-div {
     padding-right: 10px;
     margin-top: 150px;
     width: 30%;
-    /* background-color: rgba(17, 121, 121, 0.372); */
-    /* background-color: rgba(26, 27, 27, 0.372); */
     backdrop-filter: blur(.3rem);
+
+    /* background-color: rgba(255, 244, 198, 0.4);
+    border-radius: 25px; */
     
     float: right;
     text-align: right;
