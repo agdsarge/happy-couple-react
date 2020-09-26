@@ -1,0 +1,25 @@
+div.signIn {
+    margin: auto;
+    width: 40%;
+    margin-top: 100px;
+    background-color: rgba(255, 244, 198, 0.4);
+    backdrop-filter: blur(.3rem);
+    border-radius: 25px;
+}
+
+div.header {
+    width: 80%;
+    margin: auto;
+    background-color: teal;
+    border-radius: 25px;
+}
+
+span.loginLink {
+    text-align: left;
+    padding-right: 40px;
+}
+
+span.registerLink {
+    text-align: right;
+    padding-left: 40px;
+}

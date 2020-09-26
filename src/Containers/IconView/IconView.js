@@ -35,7 +35,6 @@ class IconView extends Component {
                         </CardContent> 
                     </Card>
                 </div>
-
             </div>
         )
     }
