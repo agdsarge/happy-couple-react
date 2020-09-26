@@ -4,12 +4,22 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {selectActiveCard} from '../../Redux/Actions/selectActiveCard'
 
+import Wizard from '../Wizard/Wizard'
+import ToDo from '../ToDo/ToDo'
+
 class IconView extends Component {
+    activeCard() {
+        if (this.props.selectCard.wizard) return <Wizard />
+        if (this.props.selectCard.todo) return <ToDo />
+    }
+
+
     render() {
         return (
             <div className='iconView'>
-                <div>ACTIVE SPACE</div>
+                <div className='activeComponentSpace'> {this.activeCard()}</div>
                 <div style={{width: '40%'}}>
+                    {/* HEY ENRIQUE, HOW DO WE MAKE CARDS BE SIDE-BY-SIDE??? */}
                     <Card variant='outlined' onClick={e => this.props.handleClick('wizard')} >
                         <CardContent>
                             <h3>WIZARD CARD</h3>
@@ -33,7 +43,7 @@ class IconView extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        selectCard: state.selectCard
     }
 }
 
