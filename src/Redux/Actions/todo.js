@@ -13,7 +13,7 @@ function todoSuccess(){
     }
 }
 
-function todoSubmit(form){
+function todoSubmit(form, w_id){
     console.log('hello')
     return (dispatch) => {
         fetch(`${API_ROOT}/todos`, {
@@ -22,10 +22,11 @@ function todoSubmit(form){
                 ...HEADERS, 
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({todoList: form})
+            body: JSON.stringify({todoList: form, wedding_id: w_id})
         })
         .then(r => r.json())
-        .then(data => {           
+        .then(data => {     
+            console.log(data)      
             dispatch(todoSuccess())
             dispatch(todoCleanup())
         })

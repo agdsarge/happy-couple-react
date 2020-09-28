@@ -1,42 +1,30 @@
 import React, { Component } from 'react'
+
 import {connect} from 'react-redux'
+import {Switch, Route} from 'react-router-dom'
+
+
 import Navbar from '../../Components/Navbar'
-import Countdown from '../../Components/Countdown'
-import Wizard from '../Wizard/Wizard'
-import ToDo from '../ToDo/ToDo'
-import WeddingMenu from '../WeddingMenu/WeddingMenu'
-import Toggle from '../../Components/Toggle'
-import ListView from '../ListView/ListView.js'
-import IconView from '../IconView/IconView.js'
+import Menu from '../WeddingMenu/WeddingMenu'
+import Wizard from '../Wizard/Wizard';
+import Wedding from '../Wedding/Wedding';
 
 
 class Home extends Component {
 
-    selectView() {
-        if (this.props.viewToggle.iconView) {
-            return <IconView />
-        } else {
-            return <ListView />
-        }
-        
-    }
 
     render() {
         return (
 
             <div>
                 < Navbar />
-                <p>Hello Couple</p>
-                <Toggle />
-                {this.selectView()}
+                <Switch>
+                    <Route exact path='/planner' render={ () => < Menu /> } />
+                    <Route path='/planner/new' render={() =>  < Wizard /> } />
+                    <Route exact path='/planner/:id' render={ (props) => < Wedding routeProps={props} /> } />
 
-                <WeddingMenu />
-
-                < Countdown />
-                < Wizard />
-
-                < ToDo />
-
+                </Switch>
+            
             </div>
         )
     }

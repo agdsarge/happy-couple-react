@@ -6,7 +6,7 @@ import './WeddingMenu.css'
 class WeddingItem extends Component {
     render() {
         return (
-            <Link to={`/home/${this.props.wedding.wedding.id}`}>
+            <Link to={`/planner/${this.props.wedding.wedding.id}`}>
                 <div className='WeddingItem' >
                     <div>
                         <p>Wedding</p>

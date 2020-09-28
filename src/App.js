@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 
 
 import './App.css';
+import ProtectedRoute from './Components/ProtectedRoute';
 import LoginContainer from './Containers/Login/LoginContainer';
 import RegisterContainer from './Containers/Register/RegisterContainer';
 import Home from './Containers/Home/Home';
-import ProtectedRoute from './Components/ProtectedRoute';
 import Splash from './Components/Splash'
 
 class App extends Component {
@@ -18,8 +18,7 @@ class App extends Component {
         <div className="App">
         
         <Switch>
-          <ProtectedRoute isAuth={this.props.isAuth} path='/home' component={ Home } />
-          <ProtectedRoute isAuth={this.props.isAuth} path='/home/:id' component={ Home } />
+          <ProtectedRoute isAuth={this.props.isAuth} path='/planner' component={ Home } />
           <Route exact path='/login' render={() => < LoginContainer /> } />
           <Route exact path='/register' render={() => < RegisterContainer /> } />
           <Route exact path='/' render={() => < Splash /> } />

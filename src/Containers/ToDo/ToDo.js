@@ -10,7 +10,7 @@ import ToDoItem from './ToDoItem'
 class ToDo extends Component {
 
     componentWillUnmount(){
-        this.props.handleSubmit(this.props.todoList);
+        this.props.handleSubmit(this.props.todoList, this.props.wedding_id);
         this.props.cleanup();
     }
 
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         filter: () => {dispatch(todoFilter())},
         cleanup: () => {dispatch(todoCleanup())},
-        handleSubmit: (list) => {dispatch(todoSubmit(list))},
+        handleSubmit: (list, id) => {dispatch(todoSubmit(list, id))},
         
     }
 }

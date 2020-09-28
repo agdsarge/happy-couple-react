@@ -26,7 +26,7 @@ class LoginContainer extends Component {
   render() {
       // if we are authenticated in state, lets redirct to home
       if (this.props.isLogged) {
-        return < Redirect to='/home' />
+        return < Redirect to='/planner' />
       }
       if (this.props.loading) {
         return < Loading />

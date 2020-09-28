@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,6 +37,11 @@ const ButtonAppBar = (props) => {
                 <Typography variant="h6" className={classes.title}>
                     <p> THIS IS THE NAVBAR </p>
                 </Typography>
+                <Link to={'/planner'}>
+                    <Button color="inherit">
+                        Main Menu
+                    </Button>
+                </Link>
                 <Button color="inherit" onClick={props.handleClick} >
                     Logout
                     

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import WeddingItem from './WeddingItem';
+import './WeddingMenu.css';
 
 class WeddingMenu extends Component {
     componentDidMount(){
@@ -9,10 +11,17 @@ class WeddingMenu extends Component {
     }
     render() {
         return (
-            <div>
-                <div>
-                    <p>Add a wedding</p>
-                </div>
+            <div className='WeddingMenu'>
+                <Link to={'/planner/new'}>
+                    <div className='WeddingItem'>
+                        <div></div>
+                        <div>
+                        <p>+</p>
+                        <p>Add a wedding</p>
+                        </div>
+                        <div></div>
+                    </div>
+                </Link>
 
                 {this.props.weddings.length > 0 ? 
                 this.props.weddings.map( wedding => < WeddingItem wedding={wedding} /> ) :
@@ -30,7 +39,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (Dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
 
     }

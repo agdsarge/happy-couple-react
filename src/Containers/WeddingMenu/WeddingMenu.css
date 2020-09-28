@@ -1,3 +1,7 @@
+.WeddingMenu {
+    margin-top: 4rem;
+}
+
 .WeddingItem {
     background-color: rgba(230, 230, 230, .6);
     display: grid;

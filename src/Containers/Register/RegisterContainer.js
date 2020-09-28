@@ -17,7 +17,7 @@ class RegisterContainer extends Component {
     
     render() {
         if (this.props.isLogged) {
-            return < Redirect to='/home' />
+            return < Redirect to='/planner' />
         }
 
         if (this.props.loading) {
