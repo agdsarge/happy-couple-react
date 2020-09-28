@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import ProtectedRoute from './Components/ProtectedRoute';
-import LoginContainer from './Containers/Login/LoginContainer';
-import RegisterContainer from './Containers/Register/RegisterContainer';
 import Home from './Containers/Home/Home';
 import Splash from './Components/Splash'
 import SignIn from './Containers/SignIn/SignIn'
