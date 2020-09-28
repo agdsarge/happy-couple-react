@@ -12,7 +12,7 @@ class ToDoItem extends Component {
         return (
             <div className='ToDo-list-item'>
                 < Checkbox checked={this.props.info.isCompleted} onChange={() => this.props.toggle(this.props.info)}/>
-                <p className='ToDo-item-text'>{this.props.info.task}</p>
+                <p className='ToDo-item-text'>{this.props.info.todo_name}</p>
             </div>
         )
     }

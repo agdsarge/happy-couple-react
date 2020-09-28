@@ -30,6 +30,10 @@ export const TODO_CLEANUP = 'TODO_CLEANUP';
 export const TODO_SUBMIT = 'TODO_SUBMIT';
 export const TODO_SUCCESS = 'TODO_SUCCESS';
 export const TODO_FAILURE = 'TODO_FAILURE';
+export const TODO_CHANGE = 'TODO_CHANGE';
+export const ADD_TODO = 'ADD_TODO';
+export const GET_TODO_LIST = 'GET_TODO_LIST';
+export const TODO_LIST_SUCCESS = 'TODO_LIST_SUCCESS';
 
 // WEDDING DETAILS ACTION TYPES
 export const SET_DATE = 'SET_DATE';

@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 
 import {NavLink} from 'react-router-dom'
 
+import {getTodoList} from '../../Redux/Actions/todo'
+
 import Countdown from '../../Components/Countdown'
 
 import Toggle from '../../Components/Toggle'
@@ -11,6 +13,10 @@ import ListView from '../ListView/ListView.js'
 import IconView from '../IconView/IconView.js'
 
 class Wedding extends Component {
+
+    componentDidMount(){
+        this.props.getTodos(this.props.routeProps.match.params.id)
+    }
 
     selectView() {
         if (this.props.viewToggle.iconView) {
@@ -40,4 +46,11 @@ const mapStateToProps = (state) => {
     
 }
 
-export default connect(mapStateToProps)(Wedding);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTodos: (id) => {dispatch(getTodoList(id))}
+    }
+    
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wedding);
