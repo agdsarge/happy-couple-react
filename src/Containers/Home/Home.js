@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 import Navbar from '../../Components/Navbar'
 import Countdown from '../../Components/Countdown'
 import Wizard from '../Wizard/Wizard'
@@ -28,6 +29,7 @@ class Home extends Component {
                 <p>Hello Couple</p>
                 <Toggle />
                 {this.selectView()}
+                <NavLink to='/guesttest'>GUEST LIST TEST</NavLink>
                 < Countdown />
                 < Wizard />
 
