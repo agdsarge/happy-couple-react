@@ -7,13 +7,14 @@ function guestFormCleanup(e) {
 }
 
 function guestFormChange(e) {
+    let [key, guestName] = e.currentTarget.name.split('|')
     return {
         type: GUEST_FORM_CHANGE,
-        payload: {
-            
-            [e.target.name]: [e.target.value]
+        guest: [guestName],
+        payload: { 
+                [key]: [e.target.value]            
         }
     }
 }
 
-export {guestFormCleanup}
+export {guestFormCleanup, guestFormChange}

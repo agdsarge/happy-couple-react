@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { guestFormChange } from '../../Redux/Actions/guestForm';
+
 // import TextField from "@material-ui/core/TextField";
 
 class GuestFormLine extends Component {
@@ -18,30 +20,30 @@ class GuestFormLine extends Component {
             'Maid of Honor',       'Mother of the Bride',
             'Mother of the Groom', 'Officiant',
             'Ring Bearer',         'Shusha Vim',
-            'Usher',               'Vrati Mi'
+            'Usher',               'Vrati Mi',
+             // thanks, theknot.com
         ]
-        // thanks, theknot.com
-
+       
         return roles.map(r => <option>{r}</option>)
     }
 
     render() {
         let specificGuest = this.props.form[this.props.guest]
+        let frankenName = `|`
         return (
             <div>
                 <span>{this.props.ind}. </span>
-                <label for="fname"> First: </label>
-                <input type="text" id="fname" name="fname" value={specificGuest.firstName} />
-                <label for="lname"> Last: </label>
-                <input type="text" id="lname" name="lname" value={specificGuest.lastName} />
+                <label for="firstName"> First: </label>
+                <input type="text" id="firstName" name={`firstName|${this.props.guest}`} value={specificGuest.firstName} onChange={this.props.handleChange} />
+                <label for="lastName"> Last: </label>
+                <input type="text" id="lname" name={`lastName|${this.props.guest}`}  value={specificGuest.lastName } onChange={this.props.handleChange} />
                 <label for="email"> email: </label>
-                <input type="text" id="email" name="email" value={specificGuest.email} />
+                <input type="text" id="email" name={`email|${this.props.guest}`}  value={specificGuest.email} onChange={this.props.handleChange} />
                 <label for="role"> role: </label>
-                <input type="text" id='role' list="weddingRoles" value={specificGuest.role} />
+                <input type="text" id='role' list="weddingRoles" name={`role|${this.props.guest}`}  value={specificGuest.role} onChange={this.props.handleChange} />
                     <datalist id="weddingRoles">
                         {this.allWeddingRoles()}
                     </datalist>
-                
             </div>
         )
     }
@@ -57,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleChange
+        handleChange: (e) => dispatch(guestFormChange(e))
     };
 };
 

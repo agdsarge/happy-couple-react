@@ -41,7 +41,10 @@ const initialState = {
 const reducer = (oldState=initialState, action) => {
     switch (action.type) {
         case GUEST_FORM_CHANGE:
-            return {...oldState, ...action.payload}
+            let specificGuest = action.guest
+            let q = {...oldState, [action.guest]: {...oldState[action.guest], ...action.payload}}
+            console.log(specificGuest, q)
+            return q
         case GUEST_FORM_CLEANUP:
             return initialState
         default:
