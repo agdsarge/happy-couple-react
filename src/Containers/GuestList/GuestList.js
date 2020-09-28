@@ -5,24 +5,6 @@ import Button from '@material-ui/core/Button';
 import GuestFormLine from './GuestFormLine'
 // import TextField from "@material-ui/core/TextField";
 
-// first name
-// last name
-// email
-// role in wedding
-//      flower girl
-//      ring bearer
-//      maid of honor
-//      best man
-//      bridesmaid
-//      groomsman
-//      officiant
-//      father of bride
-//      mother of bride
-//      father of groom
-//      mother of groom
-//      other
-// admin?
-
 class GuestList extends Component {
     render() {
         return (
@@ -53,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+        handleSubmit: () => {}
     }
 }
 

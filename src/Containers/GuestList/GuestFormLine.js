@@ -29,18 +29,33 @@ class GuestFormLine extends Component {
 
     render() {
         let specificGuest = this.props.form[this.props.guest]
-        let frankenName = `|`
         return (
             <div>
                 <span>{this.props.ind}. </span>
                 <label for="firstName"> First: </label>
-                <input type="text" id="firstName" name={`firstName|${this.props.guest}`} value={specificGuest.firstName} onChange={this.props.handleChange} />
+                <input type="text" id="firstName" name='firstName' 
+                    required
+                    value={specificGuest.firstName} 
+                    onChange={(e) => this.props.handleChange(e, this.props.guest)} 
+                />
                 <label for="lastName"> Last: </label>
-                <input type="text" id="lname" name={`lastName|${this.props.guest}`}  value={specificGuest.lastName } onChange={this.props.handleChange} />
+                <input type="text" id="lname" name='lastName'  
+                    required
+                    value={specificGuest.lastName} 
+                    onChange={(e) => this.props.handleChange(e, this.props.guest)} 
+                />
                 <label for="email"> email: </label>
-                <input type="text" id="email" name={`email|${this.props.guest}`}  value={specificGuest.email} onChange={this.props.handleChange} />
+                <input type="text" id="email" name='email'  
+                    required
+                    value={specificGuest.email} 
+                    onChange={(e) => this.props.handleChange(e, this.props.guest)} 
+                />
                 <label for="role"> role: </label>
-                <input type="text" id='role' list="weddingRoles" name={`role|${this.props.guest}`}  value={specificGuest.role} onChange={this.props.handleChange} />
+                <input type="text" id='role' list="weddingRoles" name='role'  
+                    required
+                    value={specificGuest.role} 
+                    onChange={(e) => this.props.handleChange(e, this.props.guest)} 
+                />
                     <datalist id="weddingRoles">
                         {this.allWeddingRoles()}
                     </datalist>
@@ -59,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleChange: (e) => dispatch(guestFormChange(e))
+        handleChange: (e, whichGuest) => dispatch(guestFormChange(e, whichGuest))
     };
 };
 

@@ -6,45 +6,42 @@ const initialState = {
         lastName: '',
         email: '',
         role: '',
-        admin: null 
+        admin: false 
     },
     guest1: {
         firstName: '',
         lastName: '',
         email: '',
         role: '',
-        admin: null
+        admin: false
     },
     guest2: {
         firstName: '',
         lastName: '',
         email: '',
         role: '',
-        admin: null
+        admin: false
     },
     guest3: {
         firstName: '',
         lastName: '',
         email: '',
         role: '',
-        admin: null
+        admin: false
     },
     guest4: {
         firstName: '',
         lastName: '',
         email: '',
         role: '',
-        admin: null
+        admin: false
     }
 }
 
 const reducer = (oldState=initialState, action) => {
     switch (action.type) {
-        case GUEST_FORM_CHANGE:
-            let specificGuest = action.guest
-            let q = {...oldState, [action.guest]: {...oldState[action.guest], ...action.payload}}
-            console.log(specificGuest, q)
-            return q
+        case GUEST_FORM_CHANGE: 
+            return {...oldState, [action.guest]: {...oldState[action.guest], ...action.payload}}
         case GUEST_FORM_CLEANUP:
             return initialState
         default:
