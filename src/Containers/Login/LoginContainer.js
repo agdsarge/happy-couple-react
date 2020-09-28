@@ -31,14 +31,8 @@ class LoginContainer extends Component {
       if (this.props.loading) {
         return < Loading />
       }
-    // what we want is a box in the middle
-    // in the box 'header' there are two tabs. the active one is login
-    // the inactive tab is register. clicking it is a link to the register form
-    // inside the box are two text fields, email and password
-    // there is also a submit button'
     return (
       <div className="LoginContainer">
-        <p>login form 0.1</p>
         <div className="LoginErrorContainer">
           {this.props.error ? (
             <p style={{ color: "red" }}>{this.props.error}</p>

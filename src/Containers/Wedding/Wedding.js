@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
 
+import {NavLink} from 'react-router-dom'
+
 import Countdown from '../../Components/Countdown'
 
 import Toggle from '../../Components/Toggle'
@@ -24,6 +26,7 @@ class Wedding extends Component {
             <div>
                 < Countdown />
                 < Toggle />
+                <NavLink to='/guesttest'>GUEST LIST TEST</NavLink>
                 {this.selectView()}
             </div>
         )
