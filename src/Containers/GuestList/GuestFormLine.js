@@ -5,9 +5,6 @@ import { guestFormChange } from '../../Redux/Actions/guestForm';
 // import TextField from "@material-ui/core/TextField";
 
 class GuestFormLine extends Component {
-    componentDidMount() {
-        console.log("DAVIS SARGEANT", this.props)
-    }
 
     allWeddingRoles() {
         let roles = [ 
@@ -22,8 +19,7 @@ class GuestFormLine extends Component {
             'Ring Bearer',         'Shusha Vim',
             'Usher',               'Vrati Mi',
              // thanks, theknot.com
-        ]
-       
+        ] 
         return roles.map(r => <option>{r}</option>)
     }
 
@@ -34,25 +30,21 @@ class GuestFormLine extends Component {
                 <span>{this.props.ind}. </span>
                 <label for="firstName"> First: </label>
                 <input type="text" id="firstName" name='firstName' 
-                    required
                     value={specificGuest.firstName} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label for="lastName"> Last: </label>
                 <input type="text" id="lname" name='lastName'  
-                    required
                     value={specificGuest.lastName} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label for="email"> email: </label>
                 <input type="text" id="email" name='email'  
-                    required
                     value={specificGuest.email} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label for="role"> role: </label>
                 <input type="text" id='role' list="weddingRoles" name='role'  
-                    required
                     value={specificGuest.role} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />

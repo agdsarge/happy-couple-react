@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import './GuestList.css'
 import Button from '@material-ui/core/Button';
 import GuestFormLine from './GuestFormLine'
+import { guestFormSubmit } from '../../Redux/Actions/guestForm';
 // import TextField from "@material-ui/core/TextField";
 
 class GuestList extends Component {
@@ -35,7 +36,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleSubmit: () => {}
+        handleSubmit: (e, form) => {dispatch(guestFormSubmit(e, form))}
     }
 }
 
