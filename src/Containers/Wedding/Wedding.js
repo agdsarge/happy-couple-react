@@ -43,7 +43,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTodos: (id) => {dispatch(getTodoList(id))}
+        getTodos: (id) => {dispatch(getTodoList(id))},
+        
     }
     
 }

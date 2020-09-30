@@ -1,28 +1,17 @@
-import {SET_DATE} from './type.js'
-import {HEADERS, API_ROOT} from '../../Constants';
+import {BACK_TO_MENU, SET_WEDDING_DETAILS} from './type.js'
+// import {HEADERS, API_ROOT} from '../../Constants';
 
-function weddingDate(date) {
+function setWeddingDetails(obj) {
     return {
-        type: SET_DATE,
-        payload: date
+        type: SET_WEDDING_DETAILS,
+        payload: {...obj.wedding}
     }
 }
 
-function getWeddingDate() {
-    return dispatch => {
-        fetch(`${API_ROOT}/date`, {
-            headers: {
-                ...HEADERS,
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.weddingDate) {
-                dispatch(weddingDate(data.weddingDate))
-            }
-        })
+function backToMenu() {
+    return {
+        type: BACK_TO_MENU
     }
 }
 
-export {getWeddingDate, weddingDate}
+export {setWeddingDetails, backToMenu}

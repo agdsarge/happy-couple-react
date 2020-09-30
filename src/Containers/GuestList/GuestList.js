@@ -7,6 +7,7 @@ import { guestFormSubmit } from '../../Redux/Actions/guestForm';
 // import TextField from "@material-ui/core/TextField";
 
 class GuestList extends Component {
+
     render() {
         return (
             <div className='GuestListForm'>
@@ -30,7 +31,7 @@ class GuestList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        form: state.GuestForm
+        form: state.guestForm
     }
 }
 

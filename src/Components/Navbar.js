@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 import { logout } from '../Redux/Actions/auth'
+import {backToMenu} from '../Redux/Actions/weddingDetails'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,11 +38,14 @@ const ButtonAppBar = (props) => {
                 <Typography variant="h6" className={classes.title}>
                     <p> THIS IS THE NAVBAR </p>
                 </Typography>
-                <Link to={'/planner'}>
-                    <Button color="inherit">
-                        Main Menu
-                    </Button>
-                </Link>
+                <div onClick={props.handleMenu}>
+                    <Link to={'/planner'}>
+                        <Button color="inherit">
+                            Main Menu
+                        </Button>
+                    </Link>
+                </div>
+                
                 <Button color="inherit" onClick={props.handleClick} >
                     Logout
                     
@@ -60,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleClick: e => dispatch(logout())
+        handleClick: e => dispatch(logout()),
+        handleMenu: e => dispatch(backToMenu())
     }
 }
 

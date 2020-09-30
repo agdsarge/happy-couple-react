@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { setWeddingDetails } from '../../Redux/Actions/weddingDetails';
 import WeddingItem from './WeddingItem';
 import './WeddingMenu.css';
 
 class WeddingMenu extends Component {
-    componentDidMount(){
-        
-    }
+
     render() {
         return (
             <div className='WeddingMenu'>
@@ -24,7 +23,7 @@ class WeddingMenu extends Component {
                 </Link>
 
                 {this.props.weddings.length > 0 ? 
-                this.props.weddings.map( wedding => < WeddingItem wedding={wedding} /> ) :
+                this.props.weddings.map( wedding => <div onClick={e => this.props.handleClick(wedding)} >  < WeddingItem wedding={wedding} />  </div>) :
                 <div>No weddings</div>
                 }
 
@@ -41,7 +40,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        handleClick: (wedding) => dispatch(setWeddingDetails(wedding))
     }
 }
 
