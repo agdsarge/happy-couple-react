@@ -5,36 +5,31 @@ const initialState = {
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
-        admin: false 
+        role: ''
     },
     guest1: {
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
-        admin: false
+        role: ''
     },
     guest2: {
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
-        admin: false
+        role: ''
     },
     guest3: {
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
-        admin: false
+        role: ''
     },
     guest4: {
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
-        admin: false
+        role: ''
     }
 }
 

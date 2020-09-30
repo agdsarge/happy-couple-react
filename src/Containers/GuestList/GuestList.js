@@ -15,7 +15,7 @@ class GuestList extends Component {
                 <p>Doesn't work yet!</p>
                 <br />
                 <h3>FORM FOR TYPING IT IN YOURSELF, LIKE A BARBARIAN</h3>
-                <form onSubmit={(e) => this.props.handleSubmit(e, this.props.form)}>
+                <form onSubmit={(e) => this.props.handleSubmit(e, this.props.form, this.props.weddingID)}>
                     <GuestFormLine key={0} guest='guest0' ind={1} />
                     <GuestFormLine key={1} guest='guest1' ind={2} />
                     <GuestFormLine key={2} guest='guest2' ind={3} />
@@ -31,13 +31,14 @@ class GuestList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        form: state.guestForm
+        form: state.guestForm,
+        weddingID: state.weddingDetails.id
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleSubmit: (e, form) => {dispatch(guestFormSubmit(e, form))}
+        handleSubmit: (e, form, id) => {dispatch(guestFormSubmit(e, form, id))}
     }
 }
 

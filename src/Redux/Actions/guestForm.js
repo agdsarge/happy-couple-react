@@ -17,7 +17,7 @@ function guestFormChange(e, specificGuest) {
     }
 }
 
-function guestFormSubmit(e, form) {
+function guestFormSubmit(e, form, weddingID) {
     return (dispatch) => {
         e.preventDefault()
         for (let row in form) {
@@ -26,13 +26,14 @@ function guestFormSubmit(e, form) {
                 delete form[row]
             }
         }
+        let submission = {"weddingID": weddingID, "guestList": form }
         fetch(`${API_ROOT}/add_guests`, {
             method: 'POST',
             headers: {
                 ...HEADERS, 
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({"guestList": form})
+            body: JSON.stringify(submission)
         })
         .then(res => res.json())
         .then(

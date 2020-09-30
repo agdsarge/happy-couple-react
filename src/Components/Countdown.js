@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 // import { getWeddingDate } from '../Redux/Actions/weddingDetails'
 
 class Countdown extends Component {
-    componentDidMount() {
-        // this.props.getWeddingDate(this.props.weddingID)
-    }
+
     render() {
         
         function countTheDays(date) {
@@ -31,7 +29,6 @@ class Countdown extends Component {
                 } else {
                     mesg = `The wedding was ${daysLeft} days ago!`
                 }
-                
                 return <p> {mesg} </p>
             } else {
                 return null
@@ -48,8 +45,7 @@ class Countdown extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // weddingDate: state.weddingDetails.wedding.wedding_date,
-        weddingDate: false
+        weddingDate: state.weddingDetails.wedding_date
     }
 }
 

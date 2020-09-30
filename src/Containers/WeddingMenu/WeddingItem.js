@@ -6,7 +6,6 @@ import './WeddingMenu.css'
 class WeddingItem extends Component {
     render() {
         return (
-            <div>
             <Link to={`/planner/${this.props.wedding.wedding.id}`}>
                 <div className='WeddingItem' >
                     <div>
@@ -22,7 +21,6 @@ class WeddingItem extends Component {
                     </div>    
                 </div>
             </Link>
-            </div>
         )
     }
 }
