@@ -1,5 +1,4 @@
 import {BACK_TO_MENU, SET_WEDDING_DETAILS} from './type.js'
-// import {HEADERS, API_ROOT} from '../../Constants';
 
 function setWeddingDetails(obj) {
     return {

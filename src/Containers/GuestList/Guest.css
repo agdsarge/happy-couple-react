@@ -1,7 +1,7 @@
 div.GuestListForm {
-    margin: auto;
+    /* margin: auto;
     margin-top: 10px;
-    width: 80%;
+    width: 80%; */
     background-color: rgba(255, 244, 198, 0.4);
     backdrop-filter: blur(.3rem);
     border-radius: 25px;
