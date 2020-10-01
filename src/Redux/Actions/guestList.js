@@ -1,4 +1,4 @@
-import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, GUEST_FORM_SUBMIT} from './type.js'
+import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST} from './type.js'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function guestFormCleanup() {
@@ -42,4 +42,24 @@ function guestFormSubmit(e, form, weddingID) {
     }
 }
 
-export {guestFormCleanup, guestFormChange, guestFormSubmit}
+function fetchGuestList(id) {
+    return (dispatch) => {
+        fetch(`${API_ROOT}/weddings/${id}/guests`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => res.json())
+        .then(d => dispatch(populateGuestList(d.list)))
+    }
+}
+
+function populateGuestList(arr) {
+    return {
+        type: POPULATE_GUEST_LIST,
+        payload: arr
+    }
+}
+
+export {guestFormCleanup, guestFormChange, guestFormSubmit, fetchGuestList, populateGuestList}

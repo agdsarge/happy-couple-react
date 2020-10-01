@@ -9,7 +9,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Home from './Containers/Home/Home';
 import Splash from './Components/Splash'
 import SignIn from './Containers/SignIn/SignIn'
-import GuestList from './Containers/GuestList/GuestList'
+
 
 class App extends Component {
   
@@ -24,7 +24,7 @@ class App extends Component {
           <Route exact path='/' render={() => < Splash /> } />
           <Route exact path='/login' render={() => < SignIn logIn={true} /> } />
           <Route exact path='/register' render={() => < SignIn logIn={false} /> } />
-          <ProtectedRoute isAuth={this.props.isAuth} path='/guesttest' component={ GuestList } />
+          
         </Switch>
     
     

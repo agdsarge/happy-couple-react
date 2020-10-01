@@ -4,12 +4,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {selectActiveCard} from '../../Redux/Actions/selectActiveCard'
 
-import GuestList from '../GuestList/GuestList'
 import ToDo from '../ToDo/ToDo'
+import GuestContainer from '../GuestList/GuestContainer';
 
 class IconView extends Component {
     activeCard() {
-        if (this.props.selectCard.guestList) return <GuestList />
+        if (this.props.selectCard.guestList) return <GuestContainer />
         if (this.props.selectCard.todo) return <ToDo />
     }
 

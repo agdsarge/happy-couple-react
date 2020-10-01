@@ -5,7 +5,7 @@ import ToDo from '../ToDo/ToDo';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import GuestList from '../GuestList/GuestList';
+import GuestContainer from '../GuestList/GuestContainer';
 
 export default class ListView extends Component {
     render() {
@@ -24,7 +24,7 @@ export default class ListView extends Component {
                         <h2>Guest List</h2>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <GuestList />
+                        <GuestContainer />
                     </AccordionDetails>
                 </Accordion>
             </div>
