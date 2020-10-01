@@ -29,8 +29,8 @@ render() {
             <button onClick={this.props.filter}>Filter</button>
                 <div className='ToDo-wrapper'>
                 {this.props.isFiltered ? 
-                filteredArray.map(todo => < ToDoItem info={todo} /> ) :
-                this.props.todoList.map( todo => < ToDoItem info={todo} /> ) 
+                filteredArray.map(todo => < ToDoItem key={todo.id} info={todo} /> ) :
+                this.props.todoList.map( todo => < ToDoItem key={todo.id} info={todo} /> ) 
             }
                 </div>
             </div>

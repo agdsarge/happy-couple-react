@@ -5,6 +5,11 @@ div.ToDo-wrapper {
 div.ToDo-list-item {
     width: 50vw;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+div.ToDo-list-item-menu {
+    width: 20vw;
+    display: grid;
     grid-template-columns: 1fr 1fr;
 }
 p.ToDo-item-text {

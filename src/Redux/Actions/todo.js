@@ -1,4 +1,4 @@
-import {TODO_CLEANUP, TODO_FILTER, TODO_TOGGLE, TOGGLE_TODO_MENU, TODO_SUBMIT, TODO_SUCCESS, ADD_TODO, TODO_CHANGE, TODO_LIST_SUCCESS} from './type'
+import {TODO_CLEANUP, TODO_FILTER, TODO_TOGGLE, TOGGLE_TODO_MENU, TOGGLE_EDIT, TODO_SUCCESS, ADD_TODO, TODO_CHANGE, TODO_LIST_SUCCESS, EDIT_TODO_NAME, POST_TODO_CHANGE, DELETE_TODO} from './type'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function todoCleanup(){
@@ -44,6 +44,65 @@ function todoChange(e){
     }
 }
 
+function editTodoName(e, todo){
+    return {
+        type: EDIT_TODO_NAME,
+        payload: {[e.target.name]: e.target.value},
+        id: todo.id
+    }
+}
+
+function changeSuccess(data){
+    console.log(data);
+    return{
+        type: POST_TODO_CHANGE,
+        payload: data,
+        id: data.id
+    }
+}
+
+function postTodoChange(e, id, todo_name){
+    return (dispatch) => {
+        e.preventDefault();
+        fetch(`${API_ROOT}/todos/${id}`, {
+            method: 'PATCH',
+            headers: {
+                ...HEADERS, 
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({t_id: id, new_todo_name: todo_name})
+        })
+        .then(r => r.json())
+        .then(data => {
+            dispatch(changeSuccess(data.todo))
+        })
+    }
+}
+
+function deleteSuccess(data){
+    return{
+        type: DELETE_TODO,
+        id: data.id
+    }
+}
+
+function deleteTodo(id){
+    return (dispatch) => {
+        fetch(`${API_ROOT}/todos/${id}`, {
+            method: 'DELETE',
+            headers: {
+                ...HEADERS, 
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({t_id: id})
+        })
+        .then(r => r.json())
+        .then(data => {
+            dispatch(deleteSuccess(data.todo))
+        })
+    }
+}
+
 function addTodo(e, todo){
     e.preventDefault();
     console.log(todo)
@@ -66,8 +125,15 @@ function todoSubmit(form, w_id){
         })
         .then(r => r.json())
         .then(data => {         
-            dispatch(todoSuccess(data))  
+            dispatch(todoListSuccess(data))  
         })
+    }
+}
+
+function toggleEditing(todo){
+    return {
+        type: TOGGLE_EDIT,
+        id: todo.id 
     }
 }
 
@@ -85,11 +151,10 @@ function toggleTodoMenu(){
 }
 
 
-
 function todoFilter(){
     return {
         type: TODO_FILTER
     }
 }
 
-export {todoCleanup, todoToggle, todoFilter, todoSubmit, toggleTodoMenu, addTodo, todoChange, getTodoList}
+export {todoCleanup, todoToggle, todoFilter, todoSubmit, toggleTodoMenu, addTodo, todoChange, getTodoList, toggleEditing, editTodoName, postTodoChange, deleteTodo}

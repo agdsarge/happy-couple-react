@@ -34,6 +34,10 @@ export const TODO_CHANGE = 'TODO_CHANGE';
 export const ADD_TODO = 'ADD_TODO';
 export const GET_TODO_LIST = 'GET_TODO_LIST';
 export const TODO_LIST_SUCCESS = 'TODO_LIST_SUCCESS';
+export const TOGGLE_EDIT = 'TOGGLE_EDIT';
+export const EDIT_TODO_NAME = 'EDIT_TODO_NAME';
+export const POST_TODO_CHANGE = 'POST_TODO_CHANGE';
+export const DELETE_TODO = 'DELETE_TODO';
 
 // WEDDING DETAILS ACTION TYPES
 export const SET_DATE = 'SET_DATE';
