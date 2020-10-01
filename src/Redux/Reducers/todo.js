@@ -42,7 +42,9 @@ const reducer = (oldState = initialState, action) => {
         case TODO_CHANGE:
             return {...oldState, ...action.payload};
         case ADD_TODO:
-            return {...oldState, newTodo: "", todoList: [...oldState.todoList, action.payload]};
+            let insertEditObj = {...oldState.editObj}
+            insertEditObj[action.id] = {editName: action.payload.todo_name, isEditing: false}
+            return {...oldState, newTodo: "", todoList: [...oldState.todoList, action.payload], editObj: insertEditObj};
         case TODO_SUBMIT:
             return initialState;
         case TODO_SUCCESS:

@@ -103,13 +103,33 @@ function deleteTodo(id){
     }
 }
 
-function addTodo(e, todo){
-    e.preventDefault();
-    console.log(todo)
+function insertTodo(todo){
     return {
         type: ADD_TODO,
-        payload: {"todo_name": todo, "isCompleted": false}
+        id: todo.id,
+        payload: todo
     }
+}
+
+
+function addTodo(e, todo, w_id){
+    e.preventDefault();
+  
+    return (dispatch) => {
+        fetch(`${API_ROOT}/todos/new`, {
+            method: 'POST',
+            headers: {
+                ...HEADERS, 
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({w_id: w_id, new_todo: todo})
+        })
+        .then(r => r.json())
+        .then( data => {
+            dispatch(insertTodo(data.todo))
+        })
+    }
+    
 }
 
 function todoSubmit(form, w_id){

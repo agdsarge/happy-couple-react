@@ -20,7 +20,7 @@ render() {
         return (
             <div>
             <div>
-                <form onSubmit={(e) => this.props.handleAddTodo(e, this.props.newTodo)}>
+                <form onSubmit={(e) => this.props.handleAddTodo(e, this.props.newTodo, this.props.w_id)}>
                     <label>New Task:</label>
                     <input name='newTodo' onChange={ (e) => this.props.handleChange(e) } value={this.props.newTodo}></input>
                     <button type='Submit'>Add</button>
@@ -40,6 +40,7 @@ render() {
 
 const mapStateToProps = (state) => {
     return {
+        w_id: state.weddingDetails.id,
         todoList: state.todo.todoList,
         isFiltered: state.todo.isFiltered,
         newTodo: state.todo.newTodo
@@ -51,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
         filter: () => {dispatch(todoFilter())},
         cleanup: () => {dispatch(todoCleanup())},
         handleChange: (e) => {dispatch(todoChange(e))},
-        handleAddTodo: (e, todo) => {dispatch(addTodo(e, todo))},
+        handleAddTodo: (e, todo, id) => {dispatch(addTodo(e, todo, id))},
         handleSubmit: (list, id) => {dispatch(todoSubmit(list, id))},
         
     }
