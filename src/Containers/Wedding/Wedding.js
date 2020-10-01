@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
 
-import {NavLink} from 'react-router-dom'
-
 import {getTodoList} from '../../Redux/Actions/todo'
 
 import Countdown from '../../Components/Countdown'
@@ -24,7 +22,6 @@ class Wedding extends Component {
         } else {
             return <ListView wedding_id={this.props.routeProps.match.params.id}/>
         }
-        
     }
 
     render() {
@@ -32,7 +29,6 @@ class Wedding extends Component {
             <div>
                 < Countdown />
                 < Toggle />
-                <NavLink to='/guesttest'>GUEST LIST TEST</NavLink>
                 {this.selectView()}
             </div>
         )
@@ -43,12 +39,12 @@ const mapStateToProps = (state) => {
     return {
         viewToggle: state.viewToggle
     }
-    
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTodos: (id) => {dispatch(getTodoList(id))}
+        getTodos: (id) => {dispatch(getTodoList(id))},
+        
     }
     
 }

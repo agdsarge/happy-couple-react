@@ -1,7 +1,7 @@
 import {SELECT_CARD} from '../Actions/type.js'
 
 let initialState = {
-    wizard: false,
+    guestList: false,
     todo: false
 }
 
