@@ -1,4 +1,10 @@
-import {GUEST_FORM_CHANGE, GUEST_FORM_CLEANUP, POPULATE_GUEST_LIST, WIPE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, REVERSE_ORDER, NEW_SELECTOR, CHANGE_NUM_ENTRY} from '../Actions/type.js'
+import {
+    GUEST_FORM_CHANGE, GUEST_FORM_CLEANUP, POPULATE_GUEST_LIST, 
+    WIPE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, 
+    REVERSE_ORDER, NEW_SELECTOR, CHANGE_NUM_ENTRY,
+    EDIT_GUEST, CLEAR_EDITOR, GUEST_INFO_CHANGE
+
+} from '../Actions/type.js'
 
 const initialState = {
     guestForm: {
@@ -66,6 +72,14 @@ const reducer = (oldState=initialState, action) => {
             return {...oldState, guestList: action.payload}
         case WIPE_GUEST_LIST:
             return {...oldState, guestList: []}
+        case CLEAR_EDITOR:
+            return {...oldState, editor: {...initialState.editor}}
+        case EDIT_GUEST:
+            return {...oldState, editor: action.payload}
+        case GUEST_INFO_CHANGE:
+            console.log(oldState.editor)
+            console.log(action.payload)
+            return {...oldState, editor: {...oldState.editor, ...action.payload}}
         //PAGINATOR
         case INCREMENT_PAGE:
             let lastPage = Math.floor(oldState.guestList.length / oldState.paginator.entriesPerPage)

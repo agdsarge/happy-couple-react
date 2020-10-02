@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector, changeNumEntry} from '../../Redux/Actions/guestList'
 import InvitedRow from './InvitedRow'
+import './Guest.css'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
@@ -77,14 +78,14 @@ class InvitedGuests extends Component {
                     <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
                 </ButtonGroup>
                 
-                <table>
+                <table className='invitedTable'>
                     <tbody>
-                        {selection}
-                    </tbody>  
+                        {selection} 
+                    </tbody>
+                                       
                 </table>
 
                 <label htmlFor="numRows">Number of Rows: </label>
-                
                 <select name="numRows" id="numRows" onChange={(e) => this.props.handleChangeNumEntry(e)}>
                     <option value={10}>10</option>
                     <option value={25}>25</option>

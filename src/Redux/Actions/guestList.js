@@ -1,4 +1,14 @@
-import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, REVERSE_ORDER, NEW_SELECTOR, CHANGE_NUM_ENTRY} from './type.js'
+import {
+    GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST, 
+    INCREMENT_PAGE, DECREMENT_PAGE, 
+    REVERSE_ORDER, NEW_SELECTOR, CHANGE_NUM_ENTRY,
+    EDIT_GUEST, CLEAR_EDITOR, GUEST_INFO_CHANGE
+} from './type.js'
+
+
+
+
+
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function guestFormCleanup() {
@@ -38,6 +48,35 @@ function reverseOrder(str) {
     return {
         type: REVERSE_ORDER,
         payload: str
+    }
+}
+
+function editGuest(guest) {
+    return {
+        type: EDIT_GUEST,
+        payload: guest
+    }
+}
+
+function changeGuestInfo(e) {
+    return {
+        type: GUEST_INFO_CHANGE,
+        payload: {
+            [e.target.name]: e.target.value
+        }
+    }
+}
+
+function saveEdit(e, guest) {
+    return (dispatch) => {
+        e.preventDefault()
+        dispatch(clearEditor())
+    }
+}
+
+function clearEditor() {
+    return {
+        type: CLEAR_EDITOR,
     }
 }
 
@@ -119,5 +158,6 @@ export {
     guestFormCleanup, guestFormChange, guestFormSubmit, 
     fetchGuestList, populateGuestList, incrementPage, 
     decrementPage, reverseOrder, newSelector,
-    changeNumEntry, delGuest,
+    changeNumEntry, delGuest, editGuest, clearEditor,
+    saveEdit, changeGuestInfo
 }
