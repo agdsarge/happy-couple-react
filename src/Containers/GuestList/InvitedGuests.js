@@ -6,36 +6,44 @@ import Button from '@material-ui/core/Button';
 
 const ALPH = 'A'.charCodeAt()
 const ZED = 'Z'.charCodeAt()
+const camelDict = {
+    idNum: 'id',
+    firstName: 'first_name',
+    lastName: 'last_name',
+    email: 'email',
+    role: 'role'
+}
 
 class InvitedGuests extends Component {
     componentDidMount() {
         this.props.fetchGuestList(this.props.weddingID)
     }
 
-    camelToSnake(str) {
-        //camelCase => camel_case
-        //might be faster to do a dict :-)
-        if (str === 'idNum') return 'id'
-        let strArr = str.split('')
-        for (let i = 0; i < strArr.length; i++) {
-            let code = strArr[i].charCodeAt()
-            if (ALPH <= code && code <= ZED ) {
-                strArr[i] = '_' + strArr[i].toLowerCase()
-            }
-        }
-        return strArr.join('')
-    }
+    // camelToSnake(str) { commented for posterity
+    //     //camelCase => camel_case
+    //     //might be faster to do a dict :-)
+        
+    //     if (str === 'idNum') return 'id'
+    //     let strArr = str.split('')
+    //     for (let i = 0; i < strArr.length; i++) {
+    //         let code = strArr[i].charCodeAt()
+    //         if (ALPH <= code && code <= ZED ) {
+    //             strArr[i] = '_' + strArr[i].toLowerCase()
+    //         }
+    //     }
+    //     return strArr.join('')
+    // }
 
     sort_by_property(arr) {
         let selector = this.props.sortSelection
         for (let key in selector) {
             if (selector[key].selected) {
-                let snakeKey = this.camelToSnake(key)
+                let snake_key = camelDict[key]
                 arr.sort((a,b) => {
                     let ans
-                    if (a[snakeKey] < b[snakeKey]) {
+                    if (a[snake_key] < b[snake_key]) {
                         ans = -1
-                    } else if (b[snakeKey] < a[snakeKey]) {
+                    } else if (b[snake_key] < a[snake_key]) {
                         ans = 1
                     } else {
                         ans = 0
