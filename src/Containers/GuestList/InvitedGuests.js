@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector} from '../../Redux/Actions/guestList'
+import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector, changeNumEntry} from '../../Redux/Actions/guestList'
+import InvitedRow from './InvitedRow'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
@@ -48,35 +49,48 @@ class InvitedGuests extends Component {
         let low = this.props.currentPage * this.props.numEntries
         let high = low + this.props.numEntries
         // new class here for good CSS and easier conversion to stuff
-        let selection = entireList.slice(low, high).map(g => <div key={g.id}> {g.first_name} {g.last_name} {g.email} {g.role}</div>)
+        let selection = entireList
+                            .slice(low, high)
+                            .map(g => <InvitedRow key={g.id} guest={g}/> )
         
         return (
             <div className='paginator'>
                 <div>
-                <Button onClick={this.props.decrementPage} color='primary' > {BACK} </Button>
+                <Button onClick={this.props.decrementPage} color='primary' size='small' > {BACK} </Button>
                 <span style={{width: '70%'}}>{this.props.currentPage}</span>
-                <Button onClick={this.props.incrementPage} color='primary' > {FORWARD} </Button>
+                <Button onClick={this.props.incrementPage} color='primary' size='small' > {FORWARD} </Button>
                 </div>
                 <ButtonGroup>
-                    <Button color='primary' onClick={(e) => this.props.handleSelector('idNum')} > ENTRY </Button>
-                    <Button color='primary' onClick={(e) => this.props.handleReverse('idNum')} >ASC/DESC</Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('idNum')} > ENTRY </Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('idNum')} >ASC/DESC</Button>
                 </ButtonGroup>
                 <ButtonGroup>
-                    <Button color='primary' onClick={(e) => this.props.handleSelector('firstName')} > FIRST NAME </Button>
-                    <Button color='primary' onClick={(e) => this.props.handleReverse('firstName')} >ASC/DESC</Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('firstName')} > FIRST NAME </Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('firstName')} >ASC/DESC</Button>
                 </ButtonGroup>
                 <ButtonGroup>
-                    <Button color='primary' onClick={(e) => this.props.handleSelector('lastName')} > LAST NAME </Button>
-                    <Button color='primary' onClick={(e) => this.props.handleReverse('lastName')} >ASC/DESC</Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('lastName')} > LAST NAME </Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('lastName')} >ASC/DESC</Button>
                 </ButtonGroup>
                 <ButtonGroup>
-                    <Button color='primary' onClick={(e) => this.props.handleSelector('email')} > EMAIL </Button>
-                    <Button color='primary' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('email')} > EMAIL </Button>
+                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
                 </ButtonGroup>
                 
-                <div>
-                    {selection}
-                </div>
+                <table>
+                    <tbody>
+                        {selection}
+                    </tbody>  
+                </table>
+
+                <label htmlFor="numRows">Number of Rows: </label>
+                
+                <select name="numRows" id="numRows" onChange={(e) => this.props.handleChangeNumEntry(e)}>
+                    <option value={10}>10</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                </select>
             </div>
         )
     }
@@ -98,26 +112,9 @@ const mapDispatchToProps = (dispatch) => {
         incrementPage: (e) => {dispatch(incrementPage())},
         decrementPage: (e) => {dispatch(decrementPage())},
         handleReverse: (str) => {dispatch(reverseOrder(str))},
-        handleSelector: (str) => {dispatch(newSelector(str))}
+        handleSelector: (str) => {dispatch(newSelector(str))},
+        handleChangeNumEntry: (e) => {dispatch(changeNumEntry(e))}
     }
 }   
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvitedGuests)
-
-// const ALPH = 'A'.charCodeAt()
-// const ZED = 'Z'.charCodeAt()
-
-// camelToSnake(str) { commented for posterity
-    //     //camelCase => camel_case
-    //     //might be faster to do a dict :-)
-        
-    //     if (str === 'idNum') return 'id'
-    //     let strArr = str.split('')
-    //     for (let i = 0; i < strArr.length; i++) {
-    //         let code = strArr[i].charCodeAt()
-    //         if (ALPH <= code && code <= ZED ) {
-    //             strArr[i] = '_' + strArr[i].toLowerCase()
-    //         }
-    //     }
-    //     return strArr.join('')
-    // }

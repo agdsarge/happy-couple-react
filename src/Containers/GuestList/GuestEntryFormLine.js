@@ -12,22 +12,22 @@ class GuestEntryFormLine extends Component {
             <div>
                 <span>{this.props.ind}. </span>
                 <label htmlFor="firstName"> First: </label>
-                <input type="text" id="firstName" name='firstName' 
+                <input type="text" name='firstName' 
                     value={specificGuest.firstName} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label htmlFor="lastName"> Last: </label>
-                <input type="text" id="lname" name='lastName'  
+                <input type="text" name='lastName'  
                     value={specificGuest.lastName} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label htmlFor="email"> email: </label>
-                <input type="text" id="email" name='email'  
+                <input type="text" name='email'  
                     value={specificGuest.email} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />
                 <label htmlFor="role"> role: </label>
-                <input type="text" id='role' list="weddingRoles" name='role'  
+                <input type="text" list="weddingRoles" name='role'  
                     value={specificGuest.role} 
                     onChange={(e) => this.props.handleChange(e, this.props.guest)} 
                 />

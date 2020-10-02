@@ -23,7 +23,7 @@ class WeddingMenu extends Component {
                 </Link>
 
                 {this.props.weddings.length > 0 ? 
-                this.props.weddings.map( wedding => <div onClick={e => this.props.handleClick(wedding)} >  < WeddingItem wedding={wedding} />  </div>) :
+                this.props.weddings.map( wedding => <div key={wedding.wedding.id} onClick={e => this.props.handleClick(wedding)} >  < WeddingItem wedding={wedding} key={wedding.wedding.id} />  </div>) :
                 <div>No weddings</div>
                 }
 

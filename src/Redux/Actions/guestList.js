@@ -1,4 +1,4 @@
-import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, REVERSE_ORDER, NEW_SELECTOR} from './type.js'
+import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, REVERSE_ORDER, NEW_SELECTOR, CHANGE_NUM_ENTRY} from './type.js'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function guestFormCleanup() {
@@ -25,6 +25,14 @@ function newSelector(str) {
         payload: str
     }
 }
+
+function changeNumEntry(e) {
+    return {
+        type: CHANGE_NUM_ENTRY,
+        payload: e.target.value
+    }
+}
+
 
 function reverseOrder(str) {
     return {
@@ -71,9 +79,25 @@ function guestFormSubmit(e, form, weddingID) {
     }
 }
 
-function fetchGuestList(id) {
+function delGuest(wedID, guestID) {
     return (dispatch) => {
-        fetch(`${API_ROOT}/weddings/${id}/guests`, {
+        fetch(`${API_ROOT}/guests/${guestID}`, {
+            method: 'DELETE',
+            headers: {
+                ...HEADERS,
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({wedding: wedID, guest: guestID})
+        })
+        .then(res => res.json())
+        .then(d => dispatch(populateGuestList(d.list)))
+    }
+}
+
+
+function fetchGuestList(wedID) {
+    return (dispatch) => {
+        fetch(`${API_ROOT}/weddings/${wedID}/guests`, {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -95,4 +119,5 @@ export {
     guestFormCleanup, guestFormChange, guestFormSubmit, 
     fetchGuestList, populateGuestList, incrementPage, 
     decrementPage, reverseOrder, newSelector,
+    changeNumEntry, delGuest,
 }
