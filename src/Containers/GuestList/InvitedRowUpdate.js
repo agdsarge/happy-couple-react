@@ -37,11 +37,9 @@ class InvitedRowUpdate extends Component {
                     />
                         <datalist id="weddingRoles">
                             {weddingRoles}
-                        </datalist>
+                        </datalist>    
                 </td>
-
-                <td><Button variant="contained" color='primary' onClick={(e) => this.props.saveEdit(e, this.props.guest)}>SAVE</Button></td>
-                
+                <td><Button variant="contained" color='primary' onClick={(e) => this.props.saveEdit(e, this.props.editor)}>SAVE</Button></td>
             </tr>
         )
     }

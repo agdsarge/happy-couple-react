@@ -70,7 +70,23 @@ function changeGuestInfo(e) {
 function saveEdit(e, guest) {
     return (dispatch) => {
         e.preventDefault()
-        dispatch(clearEditor())
+        let {id, first_name, last_name, email, role} = guest
+        
+        
+        fetch(`${API_ROOT}/guests/${id}`, {
+            method: "PATCH",
+            headers: {
+                ...HEADERS,
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(guest)
+        })
+        .then(res => res.json())
+        .then(d => {
+            dispatch(clearEditor())
+            dispatch(populateGuestList(d.list))
+        })
+        
     }
 }
 
@@ -91,9 +107,9 @@ function guestFormChange(e, specificGuest) {
 }
 
 function guestFormSubmit(e, form, weddingID) {
-    console.log(form)
+    e.preventDefault()
     return (dispatch) => {
-        e.preventDefault()
+        
         for (let row in form) {
             // remove empty rows of the form
             if (!(form[row].firstName || form[row].lastName )) {
@@ -111,7 +127,7 @@ function guestFormSubmit(e, form, weddingID) {
         })
         .then(res => res.json())
         .then( data => {
-            dispatch(fetchGuestList(weddingID))
+            dispatch(populateGuestList(data.list))
             dispatch(guestFormCleanup())
             } 
         )        
