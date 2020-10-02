@@ -39,7 +39,7 @@ class GuestEntryForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        form: state.guestForm,
+        form: state.guestList.guestForm,
         weddingID: state.weddingDetails.id
     }
 }

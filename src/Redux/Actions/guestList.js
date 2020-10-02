@@ -1,9 +1,35 @@
-import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST} from './type.js'
+import {GUEST_FORM_CLEANUP, GUEST_FORM_CHANGE, POPULATE_GUEST_LIST, INCREMENT_PAGE, DECREMENT_PAGE, REVERSE_ORDER, NEW_SELECTOR} from './type.js'
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function guestFormCleanup() {
     return {
         type: GUEST_FORM_CLEANUP
+    }
+}
+
+function incrementPage() {
+    return {
+        type: INCREMENT_PAGE
+    }
+}
+
+function decrementPage() {
+    return {
+        type: DECREMENT_PAGE
+    }
+}
+
+function newSelector(str) {
+    return {
+        type: NEW_SELECTOR,
+        payload: str
+    }
+}
+
+function reverseOrder(str) {
+    return {
+        type: REVERSE_ORDER,
+        payload: str
     }
 }
 
@@ -18,6 +44,7 @@ function guestFormChange(e, specificGuest) {
 }
 
 function guestFormSubmit(e, form, weddingID) {
+    console.log(form)
     return (dispatch) => {
         e.preventDefault()
         for (let row in form) {
@@ -36,8 +63,10 @@ function guestFormSubmit(e, form, weddingID) {
             body: JSON.stringify(submission)
         })
         .then(res => res.json())
-        .then(
+        .then( data => {
+            dispatch(fetchGuestList(weddingID))
             dispatch(guestFormCleanup())
+            } 
         )        
     }
 }
@@ -62,4 +91,8 @@ function populateGuestList(arr) {
     }
 }
 
-export {guestFormCleanup, guestFormChange, guestFormSubmit, fetchGuestList, populateGuestList}
+export {
+    guestFormCleanup, guestFormChange, guestFormSubmit, 
+    fetchGuestList, populateGuestList, incrementPage, 
+    decrementPage, reverseOrder, newSelector,
+}
