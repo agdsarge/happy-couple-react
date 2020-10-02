@@ -4,8 +4,9 @@ import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector}
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
-const ALPH = 'A'.charCodeAt()
-const ZED = 'Z'.charCodeAt()
+const BACK = '<-'
+const FORWARD = '->'
+
 const camelDict = {
     idNum: 'id',
     firstName: 'first_name',
@@ -18,21 +19,6 @@ class InvitedGuests extends Component {
     componentDidMount() {
         this.props.fetchGuestList(this.props.weddingID)
     }
-
-    // camelToSnake(str) { commented for posterity
-    //     //camelCase => camel_case
-    //     //might be faster to do a dict :-)
-        
-    //     if (str === 'idNum') return 'id'
-    //     let strArr = str.split('')
-    //     for (let i = 0; i < strArr.length; i++) {
-    //         let code = strArr[i].charCodeAt()
-    //         if (ALPH <= code && code <= ZED ) {
-    //             strArr[i] = '_' + strArr[i].toLowerCase()
-    //         }
-    //     }
-    //     return strArr.join('')
-    // }
 
     sort_by_property(arr) {
         let selector = this.props.sortSelection
@@ -58,15 +44,12 @@ class InvitedGuests extends Component {
 
     render() {
         let entireList = this.sort_by_property(this.props.guestList)
-
-        entireList = entireList.map(g => <div key={g.id}> {g.first_name} {g.last_name} {g.email} {g.role}</div>)
        
         let low = this.props.currentPage * this.props.numEntries
         let high = low + this.props.numEntries
-        let selection = entireList.slice(low, high)
-
-        const BACK = '<-'
-        const FORWARD = '->'
+        // new class here for good CSS and easier conversion to stuff
+        let selection = entireList.slice(low, high).map(g => <div key={g.id}> {g.first_name} {g.last_name} {g.email} {g.role}</div>)
+        
         return (
             <div className='paginator'>
                 <div>
@@ -120,3 +103,21 @@ const mapDispatchToProps = (dispatch) => {
 }   
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvitedGuests)
+
+// const ALPH = 'A'.charCodeAt()
+// const ZED = 'Z'.charCodeAt()
+
+// camelToSnake(str) { commented for posterity
+    //     //camelCase => camel_case
+    //     //might be faster to do a dict :-)
+        
+    //     if (str === 'idNum') return 'id'
+    //     let strArr = str.split('')
+    //     for (let i = 0; i < strArr.length; i++) {
+    //         let code = strArr[i].charCodeAt()
+    //         if (ALPH <= code && code <= ZED ) {
+    //             strArr[i] = '_' + strArr[i].toLowerCase()
+    //         }
+    //     }
+    //     return strArr.join('')
+    // }
