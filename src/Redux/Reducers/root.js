@@ -11,8 +11,9 @@ import viewToggle from './viewToggle.js'
 import selectCard from './selectCard.js'
 import guestList from './guestList.js'
 import weddingPresentation from './weddingPresentation.js'
+import rsvp from './rsvp.js'
 
 export default combineReducers({
-    login, auth, register, weddingDetails, wizard, todo, viewToggle, selectCard, weddings, guestList, weddingPresentation
+    login, auth, register, weddingDetails, wizard, todo, viewToggle, selectCard, rsvp, weddings, guestList, weddingPresentation
     //next reducer here in comma-separated object
 })

@@ -3,3 +3,7 @@ div.WeddingPresentation {
     height: 100%;
     width: 100%;
 }
+
+div.WeddingPresentation-RSVP {
+    height: 50vh;
+}
