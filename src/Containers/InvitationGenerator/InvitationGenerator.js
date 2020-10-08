@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeInvitationTone, changeLineText, changeLineStyle, popoverOpen, popoverClose } from '../../Redux/Actions/invitationGenerator';
+import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose} from '../../Redux/Actions/invitationGenerator';
 
 import './InvitationGenerator.css';
 import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
 import LineEdit from './LineEdit';
 // const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -27,8 +26,6 @@ import LineEdit from './LineEdit';
 
 const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
-//https://stackoverflow.com/questions/56442030/how-can-i-convert-popover-material-ui-functional-component-to-class-based-compon
-
 class InvitationGenerator extends Component {
     componentDidMount() {
         //probably should fetch the invitation info, if it exists
@@ -38,10 +35,6 @@ class InvitationGenerator extends Component {
         
     }
 
-    popOver(e) {
-
-    }
-
     formLines(ary) {
         return ary.map(int => {
             // change text
@@ -49,23 +42,25 @@ class InvitationGenerator extends Component {
                 // font size
                 // which font
                 // color
-            return (
-                <div key={int}>
-                    <input 
-                        value={this.props.editor[int].text} 
-                        onChange={(e) => this.props.handleLineTextChange(e, int)}>    
-                    </input> {' '}
-                    <Button 
-                        variant='contained' 
-                        color='primary' 
-                        size='small'
-                        onClick={(e) =>this.props.handlePopoverOpen(e, int)}
-                    >
-                        edit
-                    </Button>
-                    
-                </div>
-            )
+            if (this.props.popEdit.lineNumber === int) {
+                return (
+                   
+                    <LineEdit key={int} lineNum={int}/>
+                        
+                   
+                )
+            } else {
+                return (    
+                    <div key={int}>
+                        <input 
+                            value={this.props.editor[int].text} 
+                            onChange={(e) => this.props.handleLineTextChange(e, int)}>    
+                        </input> {' '}
+                        <Button variant='contained' color='primary' size='small' onClick={(e) => this.props.handlePopEditOpen(int) }>edit font</Button>                    
+                    </div>
+                )
+            }
+            
         })
     }
 
@@ -105,24 +100,10 @@ class InvitationGenerator extends Component {
                     <option>Fun</option>
                 </select>
                 <div className='container'>
-                    <div className='invitationForm' style={{float: 'left', width: '360px'}}>
+                    <div className='invitationForm' style={{float: 'left', width: '480px'}}>
                         {this.formLines(arr)}
                     </div>
-                    <Popover
-                        open={this.props.popover.open}
-                        anchorEl={this.props.popover.anchorEl}
-                        onClose={this.props.handlePopoverClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        <LineEdit />
-                    </Popover>
+                    
                     <div className="invitationPreview" style={this.props.inviteStyle}>
                         {this.previewLines(arr)}
                     </div>
@@ -139,7 +120,7 @@ const mapStateToProps = (state) => {
         inviteTone: state.invitationGenerator.tone,
         inviteStyle: state.invitationGenerator.style,
         editor: state.invitationGenerator.editor,
-        popover: state.invitationGenerator.popover
+        popEdit: state.invitationGenerator.popEdit
     }
 }
 
@@ -148,8 +129,8 @@ const mapDispatchToProps = (dispatch) => {
         handleToneChange: (e) => {dispatch(changeInvitationTone(e))},
         handleLineTextChange: (e, lineNum) => {dispatch(changeLineText(e, lineNum))},
         handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
-        handlePopoverClose: (e) => {dispatch(popoverClose(e))},
-        handlePopoverOpen: (e, lineNum) => {dispatch(popoverOpen(e, lineNum))}
+        handlePopEditClose: () => {dispatch(popEditClose())},
+        handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))}
     }
 }
 

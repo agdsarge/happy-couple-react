@@ -1,4 +1,6 @@
-import {CHANGE_INVITATION_STYLE, CHANGE_INVITATION_TONE, CHANGE_LINE_STYLE, CHANGE_LINE_TEXT, POPOVER_OPEN, POPOVER_CLOSE } from './type'
+import {
+    CHANGE_INVITATION_STYLE, CHANGE_INVITATION_TONE, CHANGE_LINE_STYLE, 
+    CHANGE_LINE_TEXT, POPEDIT_OPEN, POPEDIT_CLOSE, CHANGE_LINE_FONT_SIZE, } from './type'
 
 function changeInvitationTone(e) {
     return {
@@ -13,6 +15,14 @@ function changeInvitationStyle(e) {
         payload: {
             [e.target.name]: e.target.value
         }
+    }
+}
+
+function changeLineFontSize(lineNum, delta) {
+    return {
+        type: CHANGE_LINE_FONT_SIZE,
+        lineNumber: lineNum,
+        payload: delta
     }
 }
 
@@ -34,21 +44,16 @@ function changeLineText(e, lineNum) {
     }
 }
 
-function popoverOpen(e, int) {
-    console.log("OPEN FUNC", int)
+function popEditOpen(int) {
     return {
-        type: POPOVER_OPEN,
-        payload: {
-            anchorEl: e.currentTarget,
-            open: true,
-            lineNumber: int,
-        }
+        type: POPEDIT_OPEN,
+        payload: int
     }
 }
 
-function popoverClose(e) {
+function popEditClose(e) {
     return {
-        type: POPOVER_CLOSE
+        type: POPEDIT_CLOSE
     }
 }
 
@@ -59,4 +64,4 @@ function fetchDBInvitation(wedID) {
     }
 }
 
-export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchDBInvitation, popoverOpen, popoverClose}
+export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchDBInvitation, popEditOpen, popEditClose, changeLineFontSize}
