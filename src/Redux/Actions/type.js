@@ -74,6 +74,7 @@ export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const INVITE_NOT_FOUND = 'INVITE_NOT_FOUND';
 export const RSVP_CLEANUP = 'RSVP_CLEANUP';
 export const RSVP_MENU = 'RSVP_MENU';
+export const RSVP_CHANGE = 'RSVP_CHANGE';
 export const RSVP_EMAIL_CHANGE = 'RSVP_EMAIL_CHANGE';
 
 

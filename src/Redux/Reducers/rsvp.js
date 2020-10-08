@@ -1,8 +1,9 @@
-import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_EMAIL_CHANGE, RSVP_MENU} from '../Actions/type.js'
+import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_EMAIL_CHANGE, RSVP_CHANGE, RSVP_MENU} from '../Actions/type.js'
 
 const initialState = {
+    rsvpchoice: "",
     email: "",
-    attending_status: 1
+    attending_status: undefined
 }
 
 const reducer = (oldState = initialState, action) => {
@@ -10,6 +11,8 @@ const reducer = (oldState = initialState, action) => {
         case INVITE_NOT_FOUND:
             return {...oldState, wedding: action.wedding, theme: action.theme}
         case RSVP_EMAIL_CHANGE: 
+            return {...oldState, ...action.payload};
+        case RSVP_CHANGE: 
             return {...oldState, ...action.payload};
         case RSVP_CLEANUP: 
             return initialState;

@@ -12,7 +12,7 @@ class NavigationMenu extends Component {
         return (
             <div>
                 <AppBar position="static">
-                <Tabs aria-label="simple tabs example">
+                <Tabs centered aria-label="simple tabs example">
                     <Tab onClick={()=>this.props.handleChange("1")} label="Home"  />
                     <Tab onClick={()=>this.props.handleChange("2")} label="Accommodations"  />
                     <Tab onClick={()=>this.props.handleChange("3")} label="RSVP" />

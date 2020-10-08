@@ -1,4 +1,4 @@
-import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_MENU, RSVP_EMAIL_CHANGE} from './type.js'
+import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_MENU, RSVP_EMAIL_CHANGE, RSVP_CHANGE, RSVP_EMAIL_SUBMIT, RSVP_SUBMIT} from './type.js'
 
 import {HEADERS, API_ROOT} from '../../Constants'
 
@@ -15,6 +15,35 @@ function rsvpEmailChange(e){
     }
 }
 
+function rsvpChange(e){
+    return {
+        type: RSVP_CHANGE,
+        payload: {[e.target.name]: e.target.value}
+    }
+}
+
+
+function rsvpSubmit(slug, choice){
+    return (dispatch) => {
+ fetch(`${API_ROOT}/weddings/${slug}/rsvp`, {
+            method: 'POST',
+            headers: {
+                ...HEADERS, 
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.isInvited) {
+                dispatch(getInviteSuccess(data))
+            } else {
+                dispatch(inviteNotFound(data))
+            }
+        })
+        
+    }
+}
+
 function inviteNotFound(data){
     return {
         type: INVITE_NOT_FOUND,
@@ -28,7 +57,7 @@ function getInviteSuccess(data){
     }
 }
 
-function getInviteStatus(slug){
+function rsvpEmailSubmit(slug, email){
     return (dispatch) => {
         fetch(`${API_ROOT}/weddings/${slug}/rsvp`, {
             method: 'POST',
@@ -45,7 +74,9 @@ function getInviteStatus(slug){
                 dispatch(inviteNotFound(data))
             }
         })
+        
     }
 }
 
-export {getInviteStatus, rsvpCleanup, rsvpEmailChange}
+
+export { rsvpCleanup, rsvpChange, rsvpEmailChange, rsvpSubmit, rsvpEmailSubmit}
