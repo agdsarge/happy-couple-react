@@ -3,3 +3,26 @@ div.WeddingPresentation {
     height: 100%;
     width: 100%;
 }
+
+div.WeddingPresentation-RSVP {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.WeddingPresentation-RSVP-Reply {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.WeddingPresentation-RSVP-Request {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

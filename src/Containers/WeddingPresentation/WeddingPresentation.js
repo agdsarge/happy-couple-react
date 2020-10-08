@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import './WeddingPresentation.css'
+import styleMap from '../../Constants/styleMap'
 
 import {connect} from 'react-redux'
 import {getWeddingView, weddingCleanup} from '../../Redux/Actions/weddingPresentation'
@@ -13,7 +14,6 @@ import Accommodation from './Accommodation';
 import ImageGallery from './ImageGallery';
 import Registry from './Registry';
 import WeddingParty from './WeddingParty';
-
 
 class WeddingPresentation extends Component {
 
@@ -29,7 +29,7 @@ class WeddingPresentation extends Component {
     renderView(){
         switch(this.props.view) {
             case "1":
-                return ( < EventDetail /> );
+                return ( < EventDetail  theme={this.props.theme} /> );
             case "2":
                 return ( < Accommodation /> );
             case "3":
@@ -45,13 +45,13 @@ class WeddingPresentation extends Component {
     }}
 
     render() {
+        
         return (
             <div className='WeddingPresentation'>
-               <p>Wedding Presentation</p>
+               <p style={styleMap("primary", this.props.theme)}>Wedding Presentation</p>
                < Headline />
                < NavigationMenu />
                 { this.renderView() }
-
             </div>
         )
     }
@@ -60,6 +60,7 @@ class WeddingPresentation extends Component {
 const mapStateToProps = (state) => {
     return {
         wedding: state.weddingPresentation.wedding,
+        theme: state.weddingPresentation.theme,
         view: state.weddingPresentation.view
     }
 }
