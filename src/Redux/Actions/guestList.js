@@ -5,10 +5,6 @@ import {
     EDIT_GUEST, CLEAR_EDITOR, GUEST_INFO_CHANGE
 } from './type.js'
 
-
-
-
-
 import {HEADERS, API_ROOT} from '../../Constants'
 
 function guestFormCleanup() {
@@ -43,7 +39,6 @@ function changeNumEntry(e) {
     }
 }
 
-
 function reverseOrder(str) {
     return {
         type: REVERSE_ORDER,
@@ -70,10 +65,7 @@ function changeGuestInfo(e) {
 function saveEdit(e, guest) {
     return (dispatch) => {
         e.preventDefault()
-        let {id, first_name, last_name, email, role} = guest
-        
-        
-        fetch(`${API_ROOT}/guests/${id}`, {
+        fetch(`${API_ROOT}/guests/${guest.id}`, {
             method: "PATCH",
             headers: {
                 ...HEADERS,
@@ -86,7 +78,6 @@ function saveEdit(e, guest) {
             dispatch(clearEditor())
             dispatch(populateGuestList(d.list))
         })
-        
     }
 }
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './ListView.css';
-import ToDo from '../ToDo/ToDo';
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+
+import ToDo from '../ToDo/ToDo';
 import GuestContainer from '../GuestList/GuestContainer';
+import InvitationGenerator from '../InvitationGenerator/InvitationGenerator';
 
 export default class ListView extends Component {
     render() {
@@ -27,7 +29,16 @@ export default class ListView extends Component {
                         <GuestContainer />
                     </AccordionDetails>
                 </Accordion>
+                <Accordion >
+                    <AccordionSummary>
+                        <h2>Invitation Generator</h2>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <InvitationGenerator />
+                    </AccordionDetails>
+                </Accordion>
             </div>
+           
         )
     }
 }
