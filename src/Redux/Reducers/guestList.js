@@ -77,8 +77,6 @@ const reducer = (oldState=initialState, action) => {
         case EDIT_GUEST:
             return {...oldState, editor: action.payload}
         case GUEST_INFO_CHANGE:
-            console.log(oldState.editor)
-            console.log(action.payload)
             return {...oldState, editor: {...oldState.editor, ...action.payload}}
         //PAGINATOR
         case INCREMENT_PAGE:
