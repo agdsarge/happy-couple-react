@@ -10,6 +10,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+//font stuff for the invitation preview
+import './Assets/Fonts/england.ttf'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

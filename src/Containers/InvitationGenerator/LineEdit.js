@@ -10,7 +10,7 @@ class LineEdit extends Component {
     render() {
         return (
             <div className='lineEdit'>
-                HELLO WORLD!
+                + - font. select new font. select new color.
             </div>
         )
     }

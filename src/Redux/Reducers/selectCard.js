@@ -2,7 +2,8 @@ import {SELECT_CARD} from '../Actions/type.js'
 
 let initialState = {
     guestList: false,
-    todo: false
+    todo: false,
+    invitationGenerator: false
 }
 
 const reducer = (oldState=initialState, action) => {
@@ -13,8 +14,5 @@ const reducer = (oldState=initialState, action) => {
             return oldState;
     }
 }
-
-
-
 
 export default reducer
