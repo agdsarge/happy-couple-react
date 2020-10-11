@@ -47,6 +47,12 @@ class RSVP extends Component {
                 <p> Please feel free to check out the photo gallery!</p>
             </div>)
     }
+    renderError(){
+        return (
+            <div>
+                <p>Error! Sorry, there seems to have been a problem with your request. </p>
+            </div>)
+    }
 
     renderRequestForm(){
         return (<div className='WeddingPresentation-RSVP-Request'>
@@ -73,6 +79,8 @@ class RSVP extends Component {
                         this.renderRequestForm() :
                         (this.props.isAttending === null) ? 
                         this.renderNotFound() :
+                        (this.props.isAttending === 0) ? 
+                        this.renderError() :
                         (this.props.isAttending === 1) ? 
                         this.renderReplyForm() :
                         (this.props.isAttending === 2) ? 

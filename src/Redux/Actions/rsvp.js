@@ -1,4 +1,4 @@
-import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_MENU, RSVP_EMAIL_CHANGE, RSVP_CHANGE, RSVP_EMAIL_SUBMIT, RSVP_SUBMIT} from './type.js'
+import { INVITE_NOT_FOUND, RSVP_CLEANUP, RSVP_MENU, RSVP_EMAIL_CHANGE, RSVP_CHANGE, RSVP_ERROR, RSVP_SUBMIT} from './type.js'
 
 import {HEADERS, API_ROOT} from '../../Constants'
 
@@ -24,14 +24,14 @@ function rsvpChange(e){
 
 function rsvpFailure(){
     return {
-        type: INVITE_NOT_FOUND,
+        type: RSVP_ERROR
     }
 }
 
 function rsvpSuccess(data){
     return {
         type: RSVP_MENU,
-        wedding: data.wedding
+        user_wedding: data.uw
     }
 }
 
@@ -48,7 +48,7 @@ function rsvpSubmit(id, attending_status){
         .then(r => r.json())
         .then(data => {
             if (!data.error) {
-                dispatch(getInviteSuccess(data))
+                dispatch(rsvpSuccess(data))
             } else {
                 dispatch(rsvpFailure())
             }
