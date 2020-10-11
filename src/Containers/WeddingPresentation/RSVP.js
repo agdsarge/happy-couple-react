@@ -27,7 +27,7 @@ class RSVP extends Component {
                 </FormControl>
                 { (this.props.value === "")
                 ? < Button disabled variant="contained" color="primary">Submit</Button>
-                : < Button onClick={this.props.handleRsvpSubmit} variant="contained" color="primary">Submit</Button>
+                : < Button onClick={() => this.props.handleRsvpSubmit(this.props.w_id, this.props.value)} variant="contained" color="primary">Submit</Button>
                  }
         </div>)
     }
@@ -54,7 +54,7 @@ class RSVP extends Component {
             <input name='email' value={this.props.email} onChange={this.props.handleChange} ></input>
             { (this.props.email === "")
                 ? < Button disabled variant="contained" color="primary">RSVP</Button>
-                : < Button onClick={this.props.handleRsvpSubmit} variant="contained" color="primary">RSVP</Button>
+                : < Button onClick={() => this.props.handleEmailSubmit(this.props.w_id, this.props.email)} variant="contained" color="primary">RSVP</Button>
             }
         </div>)
     }
@@ -88,13 +88,15 @@ const mapStateToProps = (state) => {
         registry: state.weddingPresentation.wedding.registry_link,
         value: state.rsvp.rsvpchoice,
         email: state.rsvp.email,
-        isAttending: state.rsvp.attending_status
+        isAttending: state.rsvp.attending_status,
+        w_id: state.weddingPresentation.wedding.id
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleRsvpSubmit: (e) => {dispatch(rsvpSubmit(e))},
+        handleRsvpSubmit: (id, attending_status) => {dispatch(rsvpSubmit(id, attending_status))},
+        handleEmailSubmit: (id, email) => {dispatch(rsvpEmailSubmit(id, email))},
         handleRsvpChange: (e) => {dispatch(rsvpChange(e))},
         handleChange: (e) => {dispatch(rsvpEmailChange(e))},
         cleanup: () => {dispatch(rsvpCleanup())}

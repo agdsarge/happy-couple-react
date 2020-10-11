@@ -22,56 +22,70 @@ function rsvpChange(e){
     }
 }
 
+function rsvpFailure(){
+    return {
+        type: INVITE_NOT_FOUND,
+    }
+}
 
-function rsvpSubmit(slug, choice){
+function rsvpSuccess(data){
+    return {
+        type: RSVP_MENU,
+        wedding: data.wedding
+    }
+}
+
+function rsvpSubmit(id, attending_status){
     return (dispatch) => {
- fetch(`${API_ROOT}/weddings/${slug}/rsvp`, {
+        fetch(`${API_ROOT}/userweddings/${id}/rsvp`, {
             method: 'POST',
             headers: {
                 ...HEADERS, 
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
-            }
+            },
+            body: JSON.stringify({attending_status: attending_status})
         })
         .then(r => r.json())
         .then(data => {
-            if (data.isInvited) {
+            if (!data.error) {
                 dispatch(getInviteSuccess(data))
             } else {
-                dispatch(inviteNotFound(data))
+                dispatch(rsvpFailure())
             }
         })
         
     }
 }
 
-function inviteNotFound(data){
+function inviteNotFound(){
     return {
-        type: INVITE_NOT_FOUND,
-        wedding: data.wedding
+        type: INVITE_NOT_FOUND
     }
 }
 
 function getInviteSuccess(data){
     return {
         type: RSVP_MENU,
+        user_wedding: data.uw
     }
 }
 
-function rsvpEmailSubmit(slug, email){
+function rsvpEmailSubmit(id, email){
     return (dispatch) => {
-        fetch(`${API_ROOT}/weddings/${slug}/rsvp`, {
+        fetch(`${API_ROOT}/weddings/${id}/attending`, {
             method: 'POST',
             headers: {
                 ...HEADERS, 
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
-            }
+            },
+            body: JSON.stringify({email: email})
         })
         .then(r => r.json())
         .then(data => {
-            if (data.isInvited) {
+            if (data.found) {
                 dispatch(getInviteSuccess(data))
             } else {
-                dispatch(inviteNotFound(data))
+                dispatch(inviteNotFound())
             }
         })
         
