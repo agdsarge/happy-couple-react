@@ -9,7 +9,6 @@ function weddingCleanup(){
 }
 
 function changeView(value){
-    
     return {
         type: CHANGE_VIEW,
         payload: value

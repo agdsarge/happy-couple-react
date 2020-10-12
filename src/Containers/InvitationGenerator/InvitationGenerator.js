@@ -44,10 +44,7 @@ class InvitationGenerator extends Component {
                 // color
             if (this.props.popEdit.lineNumber === int) {
                 return (
-                   
                     <LineEdit key={int} lineNum={int}/>
-                        
-                   
                 )
             } else {
                 return (    
