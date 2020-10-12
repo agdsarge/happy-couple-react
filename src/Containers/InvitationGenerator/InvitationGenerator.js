@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose} from '../../Redux/Actions/invitationGenerator';
+import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose, submitInvitation} from '../../Redux/Actions/invitationGenerator';
 
 import './InvitationGenerator.css';
 import Button from '@material-ui/core/Button';
@@ -99,6 +99,14 @@ class InvitationGenerator extends Component {
                 <div className='container'>
                     <div className='invitationForm' style={{float: 'left', width: '480px'}}>
                         {this.formLines(arr)}
+                        <Button 
+                            variant='contained' 
+                            color='primary' 
+                            size='small'
+                            onClick={(e) => this.props.handleSubmit(e, this.props.inviteStyle, this.props.editor, this.props.weddingID)}
+                        >
+                            submit
+                        </Button>
                     </div>
                     
                     <div className="invitationPreview" style={this.props.inviteStyle}>
@@ -113,6 +121,7 @@ class InvitationGenerator extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        weddingID: state.weddingDetails.id,
         weddingDate: state.weddingDetails.wedding_date,
         inviteTone: state.invitationGenerator.tone,
         inviteStyle: state.invitationGenerator.style,
@@ -127,7 +136,8 @@ const mapDispatchToProps = (dispatch) => {
         handleLineTextChange: (e, lineNum) => {dispatch(changeLineText(e, lineNum))},
         handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
         handlePopEditClose: () => {dispatch(popEditClose())},
-        handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))}
+        handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))},
+        handleSubmit: (e, style, ed, id) => {dispatch(submitInvitation(e, style, ed, id))}
     }
 }
 

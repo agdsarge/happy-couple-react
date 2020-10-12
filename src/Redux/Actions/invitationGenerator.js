@@ -4,6 +4,9 @@ import {
     CHANGE_LINE_TYPEFACE, CHANGE_LINE_TYPE_COLOR
 } from './type'
 
+import {API_ROOT, HEADERS} from '../../Constants'
+
+
 function changeInvitationTone(e) {
     return {
         type: CHANGE_INVITATION_TONE,
@@ -82,4 +85,25 @@ function changeLineColor(e, lineNum) {
     }
 }
 
-export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchDBInvitation, popEditOpen, popEditClose, changeLineFontSize, changeFontFamily, changeLineColor}
+function submitInvitation(e, style, editor, wedID) {
+    e.preventDefault()
+    return (dispatch) => {
+        const submission = {
+            weddingID: wedID,
+            invitationStyle: style,
+            lines: editor
+        }
+        fetch(`${API_ROOT}/invitations/${wedID}`, {
+            method: 'POST',
+            headers: {
+                ...HEADERS,
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(submission)
+        })
+        .then(res => res.json())
+        .then(console.log)
+    }
+}
+
+export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchDBInvitation, popEditOpen, popEditClose, changeLineFontSize, changeFontFamily, changeLineColor, submitInvitation}

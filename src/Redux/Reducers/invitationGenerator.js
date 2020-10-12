@@ -25,6 +25,7 @@ const initialState = {
         whiteSpace: 'pre-wrap',
         float: 'right',
         width: '400px',
+        textAlign: 'center'
     },
     popEdit: {
         lineNumber: null,
@@ -36,7 +37,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             }, 
         },
         {
@@ -44,7 +46,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -52,7 +55,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -60,7 +64,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -68,7 +73,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -76,7 +82,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -84,7 +91,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -92,7 +100,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -100,7 +109,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -108,7 +118,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -116,7 +127,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -124,7 +136,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -132,7 +145,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -140,7 +154,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
         {
@@ -148,7 +163,8 @@ const initialState = {
             lineStyle: {
                 fontFamily: "EnglandHand",
                 fontSize: "20px",
-                color: "222222"
+                color: "222222",
+                textAlign: 'center'
             },
         },
     ]
