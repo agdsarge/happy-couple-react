@@ -14,6 +14,8 @@ import rsvp from './rsvp.js'
 import viewControl from './viewControl.js'
 
 export default combineReducers({
-    login, auth, register, weddingDetails, wizard, todo, viewControl, rsvp, weddings, guestList, weddingPresentation, invitationGenerator
-    //next reducer here in comma-separated object
+    login, auth, register, weddingDetails, wizard, 
+    todo, viewControl, rsvp, weddings, guestList, 
+    weddingPresentation, invitationGenerator
+    
 })

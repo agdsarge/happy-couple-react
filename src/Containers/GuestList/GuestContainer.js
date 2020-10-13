@@ -6,7 +6,7 @@ import './Guest.css'
 export default class GuestContainer extends Component {
     render() {
         return (
-            <div>
+            <div className='guestContainer'>
                 <InvitedGuests />
                 <hr />
                 <GuestEntryForm />
@@ -14,3 +14,4 @@ export default class GuestContainer extends Component {
         )
     }
 }
+

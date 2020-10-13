@@ -6,7 +6,6 @@ import './Guest.css'
 import InvitedRowRead from './InvitedRowRead';
 import InvitedRowUpdate from './InvitedRowUpdate';
 
-
 class InvitedRow extends Component {
 
     render() {
@@ -22,7 +21,6 @@ class InvitedRow extends Component {
         )
     }
 }
-// i could do a <tr></tr> : <tr>/<tr>
 
 const mapStateToProps = (state) => {
     return {
