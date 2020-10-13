@@ -22,3 +22,13 @@ code {
   font-family: 'EnglandHand';
   src: local('england'), url(./Assets/Fonts/england.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'LibreBaskerville';
+  src: local('baskerville'), url(./Assets/Fonts/LibreBaskerville.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: local('sans'), url(./Assets/Fonts/SourceSansPro.ttf) format('truetype');
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose} from '../../Redux/Actions/invitationGenerator';
+import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose, submitInvitation, fetchInvitation, patchInvitation} from '../../Redux/Actions/invitationGenerator';
 
 import './InvitationGenerator.css';
 import Button from '@material-ui/core/Button';
@@ -28,7 +28,7 @@ const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 class InvitationGenerator extends Component {
     componentDidMount() {
-        //probably should fetch the invitation info, if it exists
+        this.props.handleFetch(this.props.weddingID)
     }
 
     traditionalDate() {
@@ -44,10 +44,7 @@ class InvitationGenerator extends Component {
                 // color
             if (this.props.popEdit.lineNumber === int) {
                 return (
-                   
                     <LineEdit key={int} lineNum={int}/>
-                        
-                   
                 )
             } else {
                 return (    
@@ -84,8 +81,6 @@ class InvitationGenerator extends Component {
     render() {
         // let dateObj = new Date(this.props.weddingDate)
         // let dayOfWeek = days[dateObj.getDay()]
-        // console.log(invitations.trad)
-
         
         return (
             <div className='invitationGenerator'>
@@ -102,6 +97,26 @@ class InvitationGenerator extends Component {
                 <div className='container'>
                     <div className='invitationForm' style={{float: 'left', width: '480px'}}>
                         {this.formLines(arr)}
+                        {this.props.post ? 
+                            <Button 
+                                variant='contained' 
+                                color='primary' 
+                                size='small'
+                                onClick={(e) => this.props.handleSubmit(e, this.props.inviteStyle, this.props.editor, this.props.weddingID)}
+                            >
+                                submit
+                            </Button>
+                                :
+                            <Button
+                                variant='contained' 
+                                color='primary' 
+                                size='small'
+                                onClick={(e) => this.props.handlePatch(e, this.props.inviteStyle, this.props.editor, this.props.weddingID)}
+                            >
+                                edit
+                            </Button>
+                        }
+                        
                     </div>
                     
                     <div className="invitationPreview" style={this.props.inviteStyle}>
@@ -116,21 +131,26 @@ class InvitationGenerator extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        weddingID: state.weddingDetails.id,
         weddingDate: state.weddingDetails.wedding_date,
         inviteTone: state.invitationGenerator.tone,
         inviteStyle: state.invitationGenerator.style,
         editor: state.invitationGenerator.editor,
-        popEdit: state.invitationGenerator.popEdit
+        popEdit: state.invitationGenerator.popEdit,
+        post: state.invitationGenerator.post
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        handleFetch: (wedID) => {dispatch(fetchInvitation(wedID))},
         handleToneChange: (e) => {dispatch(changeInvitationTone(e))},
         handleLineTextChange: (e, lineNum) => {dispatch(changeLineText(e, lineNum))},
         handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
         handlePopEditClose: () => {dispatch(popEditClose())},
-        handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))}
+        handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))},
+        handleSubmit: (e, style, ed, id) => {dispatch(submitInvitation(e, style, ed, id))},
+        handlePatch: (e, style, ed, id) => {dispatch(patchInvitation(e, style, ed, id))}
     }
 }
 
