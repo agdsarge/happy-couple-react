@@ -16,3 +16,24 @@
     background-color: rgba(210, 210, 210, .6);
     cursor: pointer;
 }
+
+.WeddingRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    width: 90%;
+    margin: auto;
+    margin-bottom: .5rem;
+}
+.WeddingButton {
+    height: 4rem;
+    background-color: rgba(230, 230, 230, .6);
+    margin-right: .5rem;
+    border-radius: 5px;
+}
+.WeddingButton:last-child {
+    margin-right: 0rem;
+}
+.WeddingButton:hover {
+    background-color: rgba(210, 210, 210, .6);
+    cursor: pointer;
+}
