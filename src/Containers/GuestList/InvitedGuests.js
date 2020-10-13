@@ -55,28 +55,29 @@ class InvitedGuests extends Component {
         
         return (
             <div className='paginator'>
-                <div>
-                <Button onClick={this.props.decrementPage} color='primary' size='small' > {BACK} </Button>
-                <span style={{width: '70%'}}>{this.props.currentPage}</span>
-                <Button onClick={this.props.incrementPage} color='primary' size='small' > {FORWARD} </Button>
+                <div className='navButtons'>
+                    <Button onClick={this.props.decrementPage} color='primary' size='small' > {BACK} </Button>
+                    <span style={{width: '70%'}}>{this.props.currentPage}</span>
+                    <Button onClick={this.props.incrementPage} color='primary' size='small' > {FORWARD} </Button>
                 </div>
-                <ButtonGroup>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('idNum')} > ENTRY </Button>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('idNum')} >ASC/DESC</Button>
-                </ButtonGroup>
-                <ButtonGroup>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('firstName')} > FIRST NAME </Button>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('firstName')} >ASC/DESC</Button>
-                </ButtonGroup>
-                <ButtonGroup>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('lastName')} > LAST NAME </Button>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('lastName')} >ASC/DESC</Button>
-                </ButtonGroup>
-                <ButtonGroup>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('email')} > EMAIL </Button>
-                    <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
-                </ButtonGroup>
-                
+                <div className='sortButtons'>
+                    <ButtonGroup>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('idNum')} > ENTRY </Button>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('idNum')} >ASC/DESC</Button>
+                    </ButtonGroup>
+                    <ButtonGroup>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('firstName')} > FIRST NAME </Button>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('firstName')} >ASC/DESC</Button>
+                    </ButtonGroup>
+                    <ButtonGroup>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('lastName')} > LAST NAME </Button>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('lastName')} >ASC/DESC</Button>
+                    </ButtonGroup>
+                    <ButtonGroup>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('email')} > EMAIL </Button>
+                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
+                    </ButtonGroup>
+                </div>
                 <table className='invitedTable'>
                     {selection}                    
                 </table>

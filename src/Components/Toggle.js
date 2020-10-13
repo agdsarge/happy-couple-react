@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {viewToggleChange} from '../Redux/Actions/viewToggle.js'
+import {viewToggleChange} from '../Redux/Actions/viewControl.js'
 
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';

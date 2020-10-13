@@ -37,7 +37,7 @@ class Wedding extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        viewToggle: state.viewToggle
+        viewToggle: state.viewControl.viewToggle
     }
 }
 

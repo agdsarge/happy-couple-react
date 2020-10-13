@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import {selectActiveCard} from '../../Redux/Actions/selectActiveCard'
+import {selectActiveCard} from '../../Redux/Actions/viewControl';
 
 import ToDo from '../ToDo/ToDo'
 import GuestContainer from '../GuestList/GuestContainer';
@@ -53,7 +53,7 @@ class IconView extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectCard: state.selectCard
+        selectCard: state.viewControl.iconCardSelection
     }
 }
 
