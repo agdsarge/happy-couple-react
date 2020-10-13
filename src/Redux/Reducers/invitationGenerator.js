@@ -1,7 +1,7 @@
 import { 
     CHANGE_INVITATION_TONE, CHANGE_INVITATION_STYLE, CHANGE_LINE_TEXT, 
     CHANGE_LINE_STYLE, POPEDIT_CLOSE, POPEDIT_OPEN, CHANGE_LINE_TYPE_COLOR,
-    CHANGE_LINE_TYPEFACE, CHANGE_LINE_FONT_SIZE, 
+    CHANGE_LINE_TYPEFACE, CHANGE_LINE_FONT_SIZE, UPDATE_STYLE_FROM_FETCH, UPDATE_LINE_FROM_FETCH, POST_OR_PATCH
 } from '../Actions/type.js'
 
 const fontTable = {
@@ -17,6 +17,7 @@ const colorTable = {
 }
 
 const initialState = {
+    post: true,
     tone: 'Traditional',
     style: {
         backgroundColor: "ivory",
@@ -176,6 +177,8 @@ const reducer = (oldState=initialState, action) => {
     switch (action.type) {
         case CHANGE_INVITATION_TONE:
             return {...oldState, tone: action.payload}
+        case POST_OR_PATCH:
+            return {...oldState, post: action.payload}
         case CHANGE_INVITATION_STYLE:
             return {...oldState, style: {...oldState.style, ...action.payload}}
         //LINE STYLE EDITOR
@@ -210,7 +213,11 @@ const reducer = (oldState=initialState, action) => {
             return {...oldState, popEdit: {lineNumber: action.payload, open: true}}
         case POPEDIT_CLOSE:
             return {...oldState, popEdit: {...initialState.popEdit}}
-        
+        //FETCH PROCESS
+        case UPDATE_STYLE_FROM_FETCH:
+            return {...oldState, style: {...oldState.style, ...action.payload}}
+        case UPDATE_LINE_FROM_FETCH:
+            return {...oldState, editor: {...oldState.editor, [action.lineNumber]: {...action.payload}}}
         default:
             return {...oldState}
     }
