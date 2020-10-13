@@ -12,15 +12,13 @@ class InvitedRow extends Component {
     render() {
         
         return (
-            <div>
+            <tbody>
                 {this.props.editor.id === this.props.guest.id ?
                     <InvitedRowUpdate guest={this.props.guest} />
                         :
                     <InvitedRowRead guest={this.props.guest} />
                 }
-           </div>
-            
-            
+           </tbody>   
         )
     }
 }

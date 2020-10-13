@@ -81,8 +81,6 @@ class InvitationGenerator extends Component {
     render() {
         // let dateObj = new Date(this.props.weddingDate)
         // let dayOfWeek = days[dateObj.getDay()]
-        // console.log(invitations.trad)
-
         
         return (
             <div className='invitationGenerator'>

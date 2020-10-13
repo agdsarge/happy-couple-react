@@ -87,7 +87,6 @@ function postOrPatch(bool) {
 
 function fetchInvitation(wedID) {
     return (dispatch) => {
-        console.log("FETCHING INVITATION!!!", `${API_ROOT}/weddings/${wedID}/invitation`)
         fetch(`${API_ROOT}/weddings/${wedID}/invitation`, {
             method: 'GET',
             headers: {
@@ -97,9 +96,7 @@ function fetchInvitation(wedID) {
         })
         .then(res => res.json())
         .then(d => {
-            console.log(d.message)
             if (d.invitation) {
-                console.log(d.invitation)
                 let {style_align, style_background_color, style_color} = d.invitation
                 const styleObj = {
                     textAlign: style_align,
@@ -158,7 +155,7 @@ function submitInvitation(e, style, editor, wedID) {
             body: JSON.stringify(submission)
         })
         .then(res => res.json())
-        .then(console.log)
+        .then()
     }
 }
 
@@ -179,7 +176,7 @@ function patchInvitation(e, style, editor, wedID) {
             body: JSON.stringify(submission)
         })
         .then(res => res.json())
-        .then(console.log)
+        .then()
     }
 }
 

@@ -40,8 +40,7 @@ class InvitedGuests extends Component {
                 })
                 return arr
             }
-        }
-       
+        } 
     }
 
     render() {
@@ -79,10 +78,7 @@ class InvitedGuests extends Component {
                 </ButtonGroup>
                 
                 <table className='invitedTable'>
-                    <tbody>
-                        {selection} 
-                    </tbody>
-                                       
+                    {selection}                    
                 </table>
 
                 <label htmlFor="numRows">Number of Rows: </label>
