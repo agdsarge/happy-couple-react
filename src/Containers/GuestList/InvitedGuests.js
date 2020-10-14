@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector, changeNumEntry} from '../../Redux/Actions/guestList'
+import {SMALL_BUTTON} from '../../Constants/index.js';
 import InvitedRow from './InvitedRow'
 import './Guest.css'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -9,13 +10,17 @@ import Button from '@material-ui/core/Button';
 const BACK = '<-'
 const FORWARD = '->'
 
-const camelDict = {
+const camelTranslation = {
     idNum: 'id',
     firstName: 'first_name',
     lastName: 'last_name',
     email: 'email',
     role: 'role'
 }
+
+// const optionDict = {
+//     firstName: ''
+// }
 
 class InvitedGuests extends Component {
     componentDidMount() {
@@ -26,7 +31,7 @@ class InvitedGuests extends Component {
         let selector = this.props.sortSelection
         for (let key in selector) {
             if (selector[key].selected) {
-                let snake_key = camelDict[key]
+                let snake_key = camelTranslation[key]
                 arr.sort((a,b) => {
                     let ans
                     if (a[snake_key] < b[snake_key]) {
@@ -41,6 +46,18 @@ class InvitedGuests extends Component {
                 return arr
             }
         } 
+    }
+
+    sortButtons() {
+        const options = ['firstName', 'lastName', 'email']
+        return options.map(opt => {
+            return (
+                <ButtonGroup>
+                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleSelector(opt)}> {camelTranslation[opt]}</Button>
+                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleReverse(opt)}>ASC/DESC</Button>
+                </ButtonGroup>
+            )
+        })
     }
 
     render() {
@@ -61,22 +78,7 @@ class InvitedGuests extends Component {
                     <Button onClick={this.props.incrementPage} color='primary' size='small' > {FORWARD} </Button>
                 </div>
                 <div className='sortButtons'>
-                    <ButtonGroup>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('idNum')} > ENTRY </Button>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('idNum')} >ASC/DESC</Button>
-                    </ButtonGroup>
-                    <ButtonGroup>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('firstName')} > FIRST NAME </Button>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('firstName')} >ASC/DESC</Button>
-                    </ButtonGroup>
-                    <ButtonGroup>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('lastName')} > LAST NAME </Button>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('lastName')} >ASC/DESC</Button>
-                    </ButtonGroup>
-                    <ButtonGroup>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleSelector('email')} > EMAIL </Button>
-                        <Button color='primary' size='small' onClick={(e) => this.props.handleReverse('email')} >ASC/DESC</Button>
-                    </ButtonGroup>
+                    {this.sortButtons()}
                 </div>
                 <table className='invitedTable'>
                     {selection}                    

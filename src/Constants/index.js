@@ -15,3 +15,9 @@ export const WEDDING_ROLES = [
     'Shusha Vim',           'Usher',            'Vrati Mi',
     // thanks, theknot.com
 ]
+
+export const SMALL_BUTTON = {
+    variant: 'contained',
+    color: 'primary',
+    size: 'small'
+}

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
+import {SMALL_BUTTON} from '../../Constants/index';
+
 import Button from '@material-ui/core/Button';
 import GuestEntryFormLine from './GuestEntryFormLine'
 import { guestFormSubmit } from '../../Redux/Actions/guestList';
-
-// import TextField from "@material-ui/core/TextField";
 
 class GuestEntryForm extends Component {
     
@@ -14,8 +14,6 @@ class GuestEntryForm extends Component {
             <GuestEntryFormLine 
                 key={int}
                 num={int} 
-                guest={`guest${int}`}
-                ind={int + 1} 
             />)
     }
 
@@ -26,15 +24,13 @@ class GuestEntryForm extends Component {
                 <br />
                 <form onSubmit={(e) => this.props.handleSubmit(e, this.props.form, this.props.weddingID)}>
                     {this.formLines()}
-                </form>
-                <Button 
-                    variant='contained' 
-                    size='small' 
-                    color='primary' 
-                    onClick={(e) => this.props.handleSubmit(e, this.props.form, this.props.weddingID)}
-                >
-                    Submit
-                </Button>
+                    <input type='submit' id='guest-list-form-submit' />
+                    <label htmlFor='guest-list-form-submit'>
+                        <Button {...SMALL_BUTTON}>
+                            Submit
+                        </Button>
+                    </label>
+                </form> 
             </div>
         )
     }
