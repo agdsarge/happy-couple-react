@@ -53,11 +53,11 @@ function editGuest(guest) {
     }
 }
 
-function changeGuestInfo(e) {
+function changeGuestInfo(e, attr) {
     return {
         type: GUEST_INFO_CHANGE,
         payload: {
-            [e.target.name]: e.target.value
+            [attr]: e.target.value
         }
     }
 }
@@ -87,12 +87,12 @@ function clearEditor() {
     }
 }
 
-function guestFormChange(e, specificGuest) {
+function guestFormChange(e, specificGuest, key) {
     return {
         type: GUEST_FORM_CHANGE,
         guest: specificGuest,
         payload: { 
-            [e.target.name]: e.target.value
+            [key]: e.target.value
         }
     }
 }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-
 import {connect} from 'react-redux'
 
 import {getTodoList} from '../../Redux/Actions/todo'
 
 import Countdown from '../../Components/Countdown'
-
 import Toggle from '../../Components/Toggle'
 import ListView from '../ListView/ListView.js'
 import IconView from '../IconView/IconView.js'
@@ -37,7 +35,7 @@ class Wedding extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        viewToggle: state.viewToggle
+        viewToggle: state.viewControl.viewToggle
     }
 }
 

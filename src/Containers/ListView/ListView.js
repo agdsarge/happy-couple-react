@@ -37,6 +37,14 @@ export default class ListView extends Component {
                         <InvitationGenerator />
                     </AccordionDetails>
                 </Accordion>
+                <Accordion >
+                    <AccordionSummary>
+                        <h2>Photo upload!</h2>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div>COMING SOON!</div>
+                    </AccordionDetails>
+                </Accordion>
             </div>
            
         )
