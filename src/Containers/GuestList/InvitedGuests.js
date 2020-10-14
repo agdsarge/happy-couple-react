@@ -4,7 +4,7 @@ import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector,
 import {SMALL_BUTTON} from '../../Constants/index.js';
 import InvitedRow from './InvitedRow'
 import './Guest.css'
-import {ButtonGroup, Button, IconButton, InputLabel, Select, MenuItem} from '@material-ui/core';
+import {ButtonGroup, Button, IconButton, Select, MenuItem} from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
@@ -89,15 +89,8 @@ class InvitedGuests extends Component {
                     {selection}                    
                 </table>
 
-                {/* <label htmlFor="numRows">Number of Rows: </label> */}
-                {/* <select name="numRows" id="numRows" onChange={(e) => this.props.handleChangeNumEntry(e)}>
-                    <option value={10}>10</option>
-                    <option value={25}>25</option>
-                    <option value={50}>50</option>
-                    <option value={100}>100</option>
-                </select> */}
-                <InputLabel id="label">Number of Rows:</InputLabel>
-                <Select labelID='label' id='select' onChange={(e) => this.props.handleChangeNumEntry(e)}>
+                
+                <Select value={this.props.numEntries} onChange={(e) => this.props.handleChangeNumEntry(e)}>
                     <MenuItem value={10}>10</MenuItem>
                     <MenuItem value={25}>25</MenuItem>
                     <MenuItem value={50}>50</MenuItem>
@@ -107,21 +100,7 @@ class InvitedGuests extends Component {
         )
     }
 }
-// asd
-// <Select
-//     labelId="demo-simple-select-outlined-label"
-//     id="demo-simple-select-outlined"
-//     value={age}
-//     onChange={handleChange}
-//     label="Age"
-// >
-//     <MenuItem value="">
-//     <em>None</em>
-//     </MenuItem>
-//     <MenuItem value={10}>Ten</MenuItem>
-//     <MenuItem value={20}>Twenty</MenuItem>
-//     <MenuItem value={30}>Thirty</MenuItem>
-// </Select>
+
 
 const mapStateToProps = (state) => {
     return {

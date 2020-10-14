@@ -26,7 +26,7 @@ class GuestEntryForm extends Component {
                     {this.formLines()}
                     <input type='submit' id='guest-list-form-submit' hidden/>
                     <label htmlFor='guest-list-form-submit'>
-                        <Button {...SMALL_BUTTON}>
+                        <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleSubmit(e, this.props.form, this.props.weddingID)}>
                             Submit
                         </Button>
                     </label>

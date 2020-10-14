@@ -60,14 +60,25 @@ const initialState = {
     }
 }
 
+function autoCompleteTransformer(obj) {
+    let target = Object.values(obj)[0].target
+    if (target) {
+        return {[Object.keys(obj)[0]]: target.value}
+    } else {
+        return obj
+    }
+}
+
 const reducer = (oldState=initialState, action) => {
     switch (action.type) {
-        case GUEST_FORM_CHANGE: 
+        case GUEST_FORM_CHANGE:
+            action.payload = autoCompleteTransformer(action.payload)
             return {...oldState, guestForm: 
                         {...oldState.guestForm, [action.guest]: 
                             {...oldState.guestForm[action.guest], ...action.payload}}}
         case GUEST_FORM_CLEANUP:
-            return {...initialState, guestList: oldState.guestList}
+            return {...oldState, guestForm: {...initialState.guestForm}}
+            //return {...initialState, guestList: oldState.guestList}
         case POPULATE_GUEST_LIST:
             return {...oldState, guestList: action.payload}
         case WIPE_GUEST_LIST:
@@ -75,6 +86,7 @@ const reducer = (oldState=initialState, action) => {
         case CLEAR_EDITOR:
             return {...oldState, editor: {...initialState.editor}}
         case EDIT_GUEST:
+            action.payload = autoCompleteTransformer(action.payload)
             return {...oldState, editor: action.payload}
         case GUEST_INFO_CHANGE:
             return {...oldState, editor: {...oldState.editor, ...action.payload}}

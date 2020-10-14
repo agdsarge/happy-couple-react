@@ -9,24 +9,27 @@ class InvitedRowUpdate extends Component {
     fourFields() {
         const fieldNames = ['first_name', 'last_name', 'email', 'role']
         return fieldNames.map(n=> {
-            let commonProps = {
-                key: n,
-                onChange: (e) => this.props.handleChange(e, n)
-            }
             if (n === 'role') {
                 return (
-                    <td>
+                    <td key={n}>
                         <Autocomplete 
-                            {...commonProps}
+                            onChange={(e, val) => this.props.handleChange(val, n)}
                             options={WEDDING_ROLES} 
-                            renderInput={(params) => <TextField {...params} value={this.props.editor[n]}></TextField>}
+                            renderInput={(params) => 
+                                <TextField {...params}  
+                                    value={this.props.editor[n]}
+                                />
+                            }
                         />
                     </td>
                 )
             } else {
                 return(
-                    <td>
-                        <TextField {...commonProps} value={this.props.editor[n]} /> 
+                    <td key={n}>
+                        <TextField 
+                            onChange={(e) => this.props.handleChange(e, n)} 
+                            value={this.props.editor[n]} 
+                        /> 
                     </td>
                 )
             }
@@ -61,29 +64,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvitedRowUpdate)
-
-// <tr>
-//                 <td><input type='text' name='first_name'
-//                     value={this.props.editor.first_name}
-//                     onChange={(e) => this.props.handleChange(e)}   
-//                 /></td>
-//                 <td><input type='text' name='last_name'
-//                     value={this.props.editor.last_name}
-//                     onChange={(e) => this.props.handleChange(e)}
-//                 /></td>
-//                 <td><input type='text' name='email'
-//                     value={this.props.editor.email}
-//                     onChange={(e) => this.props.handleChange(e)}    
-//                 /></td>
-//                 <td>
-//                     <label htmlFor="role"></label>
-//                     <input type='text' list="weddingRoles" name='role' 
-//                         value={this.props.editor.role} 
-//                         onChange={(e) => this.props.handleChange(e)}    
-//                     />
-//                         <datalist id="weddingRoles">
-//                             {weddingRoles}
-//                         </datalist>    
-//                 </td>
-//                 <td><Button {...SMALL_BUTTON} onClick={(e) => this.props.saveEdit(e, this.props.editor)}>SAVE</Button></td>
-//             </tr>

@@ -8,6 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ToDo from '../ToDo/ToDo';
 import GuestContainer from '../GuestList/GuestContainer';
 import InvitationGenerator from '../InvitationGenerator/InvitationGenerator';
+import PhotoTest from '../PhotoTest/PhotoTest';
 
 export default class ListView extends Component {
     render() {
@@ -42,7 +43,7 @@ export default class ListView extends Component {
                         <h2>Photo upload!</h2>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <div>COMING SOON!</div>
+                        <PhotoTest/>
                     </AccordionDetails>
                 </Accordion>
             </div>

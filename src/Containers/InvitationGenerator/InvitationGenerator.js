@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose, submitInvitation, fetchInvitation, patchInvitation} from '../../Redux/Actions/invitationGenerator';
 
 import './InvitationGenerator.css';
-import Button from '@material-ui/core/Button';
+import {Button, TextField} from '@material-ui/core';
 import LineEdit from './LineEdit';
 // const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -31,28 +31,21 @@ class InvitationGenerator extends Component {
         this.props.handleFetch(this.props.weddingID)
     }
 
-    traditionalDate() {
-        
-    }
-
     formLines(ary) {
         return ary.map(int => {
-            // change text
-            // change line style
-                // font size
-                // which font
-                // color
+  
             if (this.props.popEdit.lineNumber === int) {
                 return (
-                    <LineEdit key={int} lineNum={int}/>
+                    <LineEdit key={int} />
                 )
             } else {
                 return (    
                     <div key={int}>
-                        <input 
+                        <TextField 
+                            style={{marginLeft: '20px', marginRight: '20px', width: '300px'}}
                             value={this.props.editor[int].text} 
-                            onChange={(e) => this.props.handleLineTextChange(e, int)}>    
-                        </input> {' '}
+                            onChange={(e) => this.props.handleLineTextChange(e, int)}
+                        />
                         <Button variant='contained' color='primary' size='small' onClick={(e) => this.props.handlePopEditOpen(int) }>edit font</Button>                    
                     </div>
                 )
@@ -146,7 +139,7 @@ const mapDispatchToProps = (dispatch) => {
         handleFetch: (wedID) => {dispatch(fetchInvitation(wedID))},
         handleToneChange: (e) => {dispatch(changeInvitationTone(e))},
         handleLineTextChange: (e, lineNum) => {dispatch(changeLineText(e, lineNum))},
-        handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
+        // handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
         handlePopEditClose: () => {dispatch(popEditClose())},
         handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))},
         handleSubmit: (e, style, ed, id) => {dispatch(submitInvitation(e, style, ed, id))},

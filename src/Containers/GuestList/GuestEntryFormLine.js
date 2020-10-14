@@ -22,8 +22,6 @@ class GuestEntryFormLine extends Component {
         const fieldNames = ['firstName', 'lastName', 'email', 'role']
         return fieldNames.map(n => {
             let commonProps = {
-                key: `${guest}${n}`,
-                onChange: (e) => this.props.handleChange(e, guest, n),
                 style: guestFormStyle,
                 placeholder: dict[n]
             }
@@ -31,13 +29,19 @@ class GuestEntryFormLine extends Component {
                 return (
                     <Autocomplete
                         {...commonProps}
+                        key={specificGuest[n]}
                         options={WEDDING_ROLES}
-                        renderInput={(params) => 
-                            <TextField {...params} value={specificGuest[n]} />}
+                        onChange={(e, val) => this.props.handleChange(val, guest, n)}
+                        renderInput={(params) => <TextField {...params} value={specificGuest[n]} />}
                     />  
                 )
             } else {
-                return ( <TextField {...commonProps} value={specificGuest[n]} /> )
+                return ( 
+                    <TextField {...commonProps} key={`${guest}${n}`} 
+                        onChange={(e) => this.props.handleChange(e, guest, n)} 
+                        value={specificGuest[n]} 
+                    /> 
+                )
             }
         })    
     }

@@ -32,12 +32,14 @@ function changeLineFontSize(lineNum, delta) {
     }
 }
 
-function changeLineStyle(e, lineNum) {
+function changeLineStyle(e, attr, lineNum) {
+    console.log("HELLO")
     return {
         type: CHANGE_LINE_STYLE,
         lineNumber: lineNum,
+        attr: attr,
         payload: {
-            [e.target.name]: e.target.value
+            [attr]: e.target.value
         }
     }
 }
