@@ -4,11 +4,11 @@ import {fetchGuestList, incrementPage, decrementPage, reverseOrder, newSelector,
 import {SMALL_BUTTON} from '../../Constants/index.js';
 import InvitedRow from './InvitedRow'
 import './Guest.css'
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
+import {ButtonGroup, Button, IconButton, InputLabel, Select, MenuItem} from '@material-ui/core';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
 
-const BACK = '<-'
-const FORWARD = '->'
 
 const camelTranslation = {
     idNum: 'id',
@@ -18,9 +18,12 @@ const camelTranslation = {
     role: 'role'
 }
 
-// const optionDict = {
-//     firstName: ''
-// }
+const optionDict = {
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    email: 'email',
+    role: 'role'
+}
 
 class InvitedGuests extends Component {
     componentDidMount() {
@@ -52,13 +55,15 @@ class InvitedGuests extends Component {
         const options = ['firstName', 'lastName', 'email']
         return options.map(opt => {
             return (
-                <ButtonGroup>
-                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleSelector(opt)}> {camelTranslation[opt]}</Button>
-                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleReverse(opt)}>ASC/DESC</Button>
+                <ButtonGroup key={opt}>
+                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleSelector(opt)}> {optionDict[opt]}</Button>
+                    <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleReverse(opt)}>sort</Button>
                 </ButtonGroup>
             )
         })
     }
+    // NB: React freaked out when  tried to use and IconButton in the second item of the ButtonGroup. 
+    // I'm not yet sufficiently literate in React or Material-UI to understand why.
 
     render() {
         let entireList = this.sort_by_property(this.props.guestList)
@@ -73,9 +78,9 @@ class InvitedGuests extends Component {
         return (
             <div className='paginator'>
                 <div className='navButtons'>
-                    <Button onClick={this.props.decrementPage} color='primary' size='small' > {BACK} </Button>
+                    <IconButton {...SMALL_BUTTON} onClick={this.props.decrementPage} > <ArrowBackIcon/></IconButton>
                     <span style={{width: '70%'}}>{this.props.currentPage}</span>
-                    <Button onClick={this.props.incrementPage} color='primary' size='small' > {FORWARD} </Button>
+                    <IconButton {...SMALL_BUTTON} onClick={this.props.incrementPage} > <ArrowForwardIcon/> </IconButton>
                 </div>
                 <div className='sortButtons'>
                     {this.sortButtons()}
@@ -84,17 +89,39 @@ class InvitedGuests extends Component {
                     {selection}                    
                 </table>
 
-                <label htmlFor="numRows">Number of Rows: </label>
-                <select name="numRows" id="numRows" onChange={(e) => this.props.handleChangeNumEntry(e)}>
+                {/* <label htmlFor="numRows">Number of Rows: </label> */}
+                {/* <select name="numRows" id="numRows" onChange={(e) => this.props.handleChangeNumEntry(e)}>
                     <option value={10}>10</option>
                     <option value={25}>25</option>
                     <option value={50}>50</option>
                     <option value={100}>100</option>
-                </select>
+                </select> */}
+                <InputLabel id="label">Number of Rows:</InputLabel>
+                <Select labelID='label' id='select' onChange={(e) => this.props.handleChangeNumEntry(e)}>
+                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={25}>25</MenuItem>
+                    <MenuItem value={50}>50</MenuItem>
+                    <MenuItem value={100}>100</MenuItem>
+                </Select>
             </div>
         )
     }
 }
+// asd
+// <Select
+//     labelId="demo-simple-select-outlined-label"
+//     id="demo-simple-select-outlined"
+//     value={age}
+//     onChange={handleChange}
+//     label="Age"
+// >
+//     <MenuItem value="">
+//     <em>None</em>
+//     </MenuItem>
+//     <MenuItem value={10}>Ten</MenuItem>
+//     <MenuItem value={20}>Twenty</MenuItem>
+//     <MenuItem value={30}>Thirty</MenuItem>
+// </Select>
 
 const mapStateToProps = (state) => {
     return {

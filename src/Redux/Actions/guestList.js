@@ -53,11 +53,11 @@ function editGuest(guest) {
     }
 }
 
-function changeGuestInfo(e) {
+function changeGuestInfo(e, attr) {
     return {
         type: GUEST_INFO_CHANGE,
         payload: {
-            [e.target.name]: e.target.value
+            [attr]: e.target.value
         }
     }
 }

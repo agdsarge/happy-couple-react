@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { getWeddingDate } from '../Redux/Actions/weddingDetails'
 
 class Countdown extends Component {
 
-    render() {
-        
-        function countTheDays(date) {
-            if (date)  {
-                let today = Date.parse(new Date())
-                let millisecondsLeft= (Date.parse(date) - today)
-                let daysLeft =  Math.ceil(millisecondsLeft / (1000 * 60 * 60 * 24))
-                let mesg
-                if (daysLeft > -1) {
-                    switch (daysLeft) {
-                        case 0:
-                            mesg =  'Today is the wedding day!'
-                            break;
-                        case 1:
-                            mesg =  'Tomorrow is the wedding day!'
-                            break;
-                        case 7:
-                            mesg =  '1 week until the wedding!'
-                            break;
-                        default:
-                            mesg =  `${daysLeft} days until the wedding!`
-                    }
-                } else {
-                    mesg = `The wedding was ${daysLeft} days ago!`
+    countTheDays(date) {
+        if (date)  {
+            let today = Date.parse(new Date())
+            let millisecondsLeft= (Date.parse(date) - today)
+            let daysLeft =  Math.ceil(millisecondsLeft / (1000 * 60 * 60 * 24))
+           
+            if (daysLeft > -1) {
+                switch (daysLeft) {
+                    case 0:
+                        return <p>{'Today is the wedding day!'}</p>
+                    case 1:
+                        return <p>{'Tomorrow is the wedding day!'}</p>
+                    case 7:
+                        return <p>{'One week until the wedding!'}</p>
+                    default:
+                        return <p>{`${daysLeft} days until the wedding!`}</p>
                 }
-                return <p> {mesg} </p>
             } else {
-                return null
-            }  
+                return <p>{`The wedding was ${-1 * daysLeft} days ago!`}</p>
+            }
+            
+        } else {
+            return null
         }  
-        
+    }  
+
+    render() { 
         return (
-            <div>
-                {countTheDays(this.props.weddingDate)}
+            <div className='countdown'>
+                {this.countTheDays(this.props.weddingDate)}
             </div>
         )
     }
