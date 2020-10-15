@@ -7,9 +7,14 @@ const initialState = {
 function reducer(oldState=initialState, action) {
     switch(action.type) {
         case NEW_IMAGE_TO_STORE:
-            const newImageArr = oldState.images
-            newImageArr.push(action.payload[0])
-            debugger
+            let newImageArr = [...oldState.images]
+            
+            let file = action.payload[0];
+
+            // const localImageUrl = window.URL.createObjectURL(file)
+            // console.log(localImageUrl)
+            newImageArr.push(file)
+            // debugger
             return {...oldState, images: newImageArr}
         case CLEAR_IMAGE_STORE:
             return {...initialState}

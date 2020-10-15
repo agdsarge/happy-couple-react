@@ -23,7 +23,7 @@ function postImagesToDB(photo) {
         fetch(`${API_ROOT}/photos`, {
             method: 'POST',
             headers: {
-                ...HEADERS,
+          
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: formData

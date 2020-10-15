@@ -16,10 +16,12 @@ class PhotoTest extends Component {
                 <input 
                     type='file'
                     accept='image/*'
+                    name='photo'
                     onChange={this.props.handleImageChange}
                 >
                 </input>
-                <button onClick={(e) => this.props.handleSubmit(this.props.photos)}></button>
+                <br></br>
+                <button onClick={() => this.props.handleSubmit(this.props.photos)}>Submit</button>
             </div>
         )
     }
@@ -27,7 +29,7 @@ class PhotoTest extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        photos: state.images
+        photos: state.photoTest.images
     }
 }
 
