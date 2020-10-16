@@ -32,7 +32,6 @@ function changeLineFontSize(lineNum, delta) {
 }
 
 function changeLineStyle(e, attr, lineNum) {
-    console.log("HELLO")
     return {
         type: CHANGE_LINE_STYLE,
         lineNumber: lineNum,
@@ -97,27 +96,29 @@ function fetchInvitation(wedID) {
         })
         .then(res => res.json())
         .then(d => {
-            if (d.invitation) {
-                let {style_align, style_background_color, style_color} = d.invitation
+            if (!d.error) {
+                console.log("FRIDAY MORNING", d)
+                let {style_align, style_background_color, style_color, styled_lines} = d
                 const styleObj = {
                     textAlign: style_align,
                     backgroundColor: style_background_color,
                     color: style_color
                 }
                 dispatch(updateStyleFromFetch(styleObj))
-                for (let i = 0; i < 15; i++) {
+
+                for (let line of styled_lines) {
                     const lineObj = {
-                        text: d.invitation[`line${i}_text`],
+                        text: line.text,
                         lineStyle: {
-                            fontFamily: d.invitation[`line${i}_font`],
-                            fontSize: d.invitation[`line${i}_size`],
-                            color: d.invitation[`line${i}_color`],
-                            textAlign: d.invitation[`line${i}_align`]
+                            fontFamily: line.fontFamily,
+                            fontSize: line.fontSize,
+                            color: line.color,
+                            textAlign: line.textAlign
                         }
                     }
-                    dispatch(updateLineFromFetch(i, lineObj))
-                    dispatch(postOrPatch(false))
+                    dispatch(updateLineFromFetch(line.line_number, lineObj))
                 }
+                dispatch(postOrPatch(false))
             }
         })
     }
