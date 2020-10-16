@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeInvitationTone, changeLineText, changeLineStyle, popEditOpen, popEditClose, submitInvitation, fetchInvitation, patchInvitation} from '../../Redux/Actions/invitationGenerator';
-
+import { changeInvitationTone, changeLineText, popEditOpen, popEditClose, submitInvitation, fetchInvitation, patchInvitation} from '../../Redux/Actions/invitationGenerator';
+import {SMALL_BUTTON} from '../../Constants/index';
 import './InvitationGenerator.css';
 import {Button, TextField} from '@material-ui/core';
 import LineEdit from './LineEdit';
+
+
 // const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 // const dates = [
@@ -24,6 +26,10 @@ import LineEdit from './LineEdit';
 //     manners: "The honour of your presence\nis requested at the marriave of FIRSTNAME_BRIDE\nto\nFIRSTNAME_GROOM\non WEDDING_DATE\nWEDDING_LOCATION\nand at a reception following the ceremeony\nRECEPTION_VENUE.\nPlease respond\n\n\nSLUG"
 // }
 
+// TODO:
+// have a way to write a default invitation
+// 'print' the preview. (open in a new tab and open the print dialogue)
+
 const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 class InvitationGenerator extends Component {
@@ -33,11 +39,8 @@ class InvitationGenerator extends Component {
 
     formLines(ary) {
         return ary.map(int => {
-  
             if (this.props.popEdit.lineNumber === int) {
-                return (
-                    <LineEdit key={int} />
-                )
+                return ( <LineEdit key={int} />)
             } else {
                 return (    
                     <div key={int}>
@@ -50,7 +53,6 @@ class InvitationGenerator extends Component {
                     </div>
                 )
             }
-            
         })
     }
 
@@ -58,23 +60,18 @@ class InvitationGenerator extends Component {
         return ary.map(int => {
             if (this.props.editor[int].text) {
                 return (
-                <div
-                    key={int}
-                    className={`line${int}`}
+                <div key={int} className={`line${int}`}
                     style={{...this.props.inviteStyle, ...this.props.editor[int].lineStyle}}
                 >
                     {this.props.editor[int].text}
                 </div>)
             } else {
-            return (<div key={int} >{' '}</div>)
+                return (<div key={int} >{' '}</div>)
             }
         })
     }
 
     render() {
-        // let dateObj = new Date(this.props.weddingDate)
-        // let dayOfWeek = days[dateObj.getDay()]
-        
         return (
             <div className='invitationGenerator'>
                 <p>Invitations are your personal way to get people to come to the wedding.</p>
@@ -91,32 +88,24 @@ class InvitationGenerator extends Component {
                     <div className='invitationForm' style={{float: 'left', width: '480px'}}>
                         {this.formLines(arr)}
                         {this.props.post ? 
-                            <Button 
-                                variant='contained' 
-                                color='primary' 
-                                size='small'
+                            <Button {...SMALL_BUTTON}
                                 onClick={(e) => this.props.handleSubmit(e, this.props.inviteStyle, this.props.editor, this.props.weddingID)}
                             >
                                 submit
                             </Button>
                                 :
-                            <Button
-                                variant='contained' 
-                                color='primary' 
-                                size='small'
+                            <Button {...SMALL_BUTTON}
                                 onClick={(e) => this.props.handlePatch(e, this.props.inviteStyle, this.props.editor, this.props.weddingID)}
                             >
                                 edit
                             </Button>
-                        }
-                        
+                        }    
                     </div>
                     
                     <div className="invitationPreview" style={this.props.inviteStyle}>
                         {this.previewLines(arr)}
                     </div>
-                </div>
-                
+                </div>    
             </div>
         )
     }
@@ -139,7 +128,6 @@ const mapDispatchToProps = (dispatch) => {
         handleFetch: (wedID) => {dispatch(fetchInvitation(wedID))},
         handleToneChange: (e) => {dispatch(changeInvitationTone(e))},
         handleLineTextChange: (e, lineNum) => {dispatch(changeLineText(e, lineNum))},
-        // handleLineStyleChange: (e, lineNum) => {dispatch(changeLineStyle(e, lineNum))},
         handlePopEditClose: () => {dispatch(popEditClose())},
         handlePopEditOpen: (lineNum) => {dispatch(popEditOpen(lineNum))},
         handleSubmit: (e, style, ed, id) => {dispatch(submitInvitation(e, style, ed, id))},

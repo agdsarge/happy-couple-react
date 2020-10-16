@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeLineFontSize, popEditClose, changeFontFamily, changeLineColor, changeLineStyle } from '../../Redux/Actions/invitationGenerator';
+import { changeLineFontSize, popEditClose, changeLineStyle } from '../../Redux/Actions/invitationGenerator';
 import {Button, MenuItem, Select} from '@material-ui/core';
+import {SMALL_BUTTON} from '../../Constants/index';
+
+const selectorNames = {
+    textAlign: 'Align',
+    fontFamily: 'Font',
+    color: 'Color'
+}
 
 class LineEdit extends Component {
 
@@ -11,67 +18,41 @@ class LineEdit extends Component {
 
     styleSelectors() {
 
-        const allOptions = this.props.editor.allOptions
-
-        const out = []
-        // for (let category in styleOptions) {  
-        //     let opts = styleOptions[category].map(opt => <MenuItem key={opt} value={this.props.editor[this.props.lineNum].lineStyle[category]}>{opt}</MenuItem>)
-        //     let sel = 
-        //         <Select 
-        //             key={category} 
-        //             value={category}
-        //             onChange={(e) => this.props.handleLineStyleChange(e, category, this.props.lineNum)}
-        //         >
-        //             {opts}   
-        //         </Select>
-        //     out.push(sel)
-        // }
-        // return out
-        let x = 
-            <Select 
-                key='x'
-                value={this.props.editor[this.props.lineNum].lineStyle.colorName||'Color'}
-                onChange={(e) => this.props.handleLineStyleChange(e, 'colorName', this.props.lineNum)}
-            >
-                <MenuItem value="Color" disabled>Color</MenuItem>
-                <MenuItem value={'Black'}>Black</MenuItem>
-                <MenuItem value={'Red'}>Red</MenuItem>
-                <MenuItem value={'Gold'}>Gold</MenuItem>
-            </Select>
-        let y = 
-        <Select
-            key='y'
-            value={this.props.editor[this.props.lineNum].lineStyle.fontCategory||'Font'}
-            onChange={(e) => this.props.handleLineStyleChange(e, 'fontCategory', this.props.lineNum)}
-        >
-            <MenuItem value="Font" disabled>Font</MenuItem>
-            <MenuItem value={'Script'}>Script</MenuItem>
-            <MenuItem value={'Sans Serif'}>Sans Serif</MenuItem>
-            <MenuItem value={'Serif'}>Serif</MenuItem>
-        </Select>
-
-        let z = 
-            <Select 
-                key='z'
-                value={this.props.editor[this.props.lineNum].lineStyle.textAlign}
-                onChange={(e) => this.props.handleLineStyleChange(e, 'textAlign', this.props.lineNum)}
-            >
-                
-                <MenuItem value={'left'}>left</MenuItem>
-                <MenuItem value={'center'}>center</MenuItem>
-                <MenuItem value={'right'}>right</MenuItem>
-            </Select>
-        return [x, y, z]
+        const selectors = []
+        for (let category in this.props.allOptions) {
+            let items = [<MenuItem key={category + 'default'} value={selectorNames[category]} disabled>{selectorNames[category]}</MenuItem>]
+            let interior = this.props.allOptions[category]
+            for (let item in interior) {
+                let menuItem = 
+                    <MenuItem
+                        key={item}
+                        value={interior[item]}
+                    >
+                    {item}
+                    </MenuItem>
+                items.push(menuItem)
+            }
+            let selector = 
+                <Select 
+                    key={category} 
+                    value={selectorNames[category]} 
+                    onChange={(e) => this.props.handleLineStyleChange(e, category, this.props.lineNum)}
+                >
+                    {items}
+                </Select>
+            selectors.push(selector)
+        }
+        return selectors
     }
 
     render() {
         return (
             <div className='lineEdit'>
-                <Button size='small' variant='contained' color='primary' onClick={(e) => this.props.handleFontChange(this.props.lineNum, -1)}>-</Button>
+                <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleFontChange(this.props.lineNum, -1)}>-</Button>
                 {parseInt(this.props.editor[this.props.lineNum].lineStyle.fontSize)}
-                <Button size='small' variant='contained' color='primary' onClick={(e) => this.props.handleFontChange(this.props.lineNum, 1)}>+</Button>
+                <Button {...SMALL_BUTTON} onClick={(e) => this.props.handleFontChange(this.props.lineNum, 1)}>+</Button>
                 {this.styleSelectors()}
-                <Button variant='contained' color='primary' size='small' onClick={(e) => this.props.handlePopEditClose()}>edit text</Button>
+                <Button {...SMALL_BUTTON} onClick={(e) => this.props.handlePopEditClose()}>edit text</Button>
             </div>
         )
     }
@@ -79,6 +60,7 @@ class LineEdit extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        allOptions: state.invitationGenerator.allOptions,
         lineNum: state.invitationGenerator.popEdit.lineNumber,
         editor: state.invitationGenerator.editor,
     }
@@ -88,28 +70,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleFontChange: (lineNum, int) => {dispatch(changeLineFontSize(lineNum, int))},
         handlePopEditClose: () => {dispatch(popEditClose())},
-        handleFontFamilyChange: (e, lineNum) => {dispatch(changeFontFamily(e, lineNum))} ,
-        handleLineColorChange: (e, lineNum) => {dispatch(changeLineColor(e, lineNum))},
         handleLineStyleChange: (e, attr, lineNum) => {dispatch(changeLineStyle(e, attr, lineNum))}
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LineEdit)
-
-// a
-// <select onChange={(e) => this.props.handleFontFamilyChange(e, this.props.lineNum)}>
-//                     <option>Script</option>
-//                     <option>Sans Serif</option>
-//                     <option>Serif</option>
-//                 </select>
-//                 <select onChange={(e) => this.props.handleLineColorChange(e, this.props.lineNum)}>
-//                     <option>Black</option>
-//                     <option>Gold</option>
-//                     <option>Red</option>
-//                     {/* <option>Custom</option> */}
-//                 </select>
-//                 <select onChange={(e) => this.props.handleLineStyleChange(e, this.props.lineNum)}>
-//                     <option>Left</option>
-//                     <option>Center</option>
-//                     <option>Right</option>
-//                 </select>
