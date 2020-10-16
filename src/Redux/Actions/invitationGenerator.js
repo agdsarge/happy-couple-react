@@ -1,12 +1,11 @@
 import {
     CHANGE_INVITATION_STYLE, CHANGE_INVITATION_TONE, CHANGE_LINE_STYLE, 
     CHANGE_LINE_TEXT, POPEDIT_OPEN, POPEDIT_CLOSE, CHANGE_LINE_FONT_SIZE, 
-    CHANGE_LINE_TYPEFACE, CHANGE_LINE_TYPE_COLOR, UPDATE_STYLE_FROM_FETCH, 
+    UPDATE_STYLE_FROM_FETCH, 
     UPDATE_LINE_FROM_FETCH, POST_OR_PATCH
 } from './type'
 
 import {API_ROOT, HEADERS} from '../../Constants'
-
 
 function changeInvitationTone(e) {
     return {
@@ -124,22 +123,6 @@ function fetchInvitation(wedID) {
     }
 }
 
-function changeFontFamily(e, lineNum) {
-    return {
-        type: CHANGE_LINE_TYPEFACE,
-        lineNumber: lineNum,
-        payload: e.target.value
-    }
-}
-
-function changeLineColor(e, lineNum) {
-    return {
-        type: CHANGE_LINE_TYPE_COLOR,
-        lineNumber: lineNum,
-        payload: e.target.value
-    }
-}
-
 function submitInvitation(e, style, editor, wedID) {
     e.preventDefault()
     return (dispatch) => {
@@ -182,4 +165,4 @@ function patchInvitation(e, style, editor, wedID) {
     }
 }
 
-export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchInvitation, popEditOpen, popEditClose, changeLineFontSize, changeFontFamily, changeLineColor, submitInvitation, patchInvitation}
+export {changeInvitationTone, changeInvitationStyle, changeLineStyle, changeLineText, fetchInvitation, popEditOpen, popEditClose, changeLineFontSize, submitInvitation, patchInvitation}

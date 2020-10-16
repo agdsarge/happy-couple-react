@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import Loading from '../../Components/Loading'
 
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
-
+import {TextField, Button, Container, CssBaseline} from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 
 import {
@@ -14,7 +10,6 @@ import {
   loginFormChange,
   loginFormSubmit,
 } from "../../Redux/Actions/login";
-import { connect } from "react-redux";
 
 import "./LoginContainer.css";
 

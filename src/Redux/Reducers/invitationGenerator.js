@@ -1,28 +1,13 @@
 import { 
     CHANGE_INVITATION_TONE, CHANGE_INVITATION_STYLE, CHANGE_LINE_TEXT, 
-    CHANGE_LINE_STYLE, POPEDIT_CLOSE, POPEDIT_OPEN, CHANGE_LINE_TYPE_COLOR,
-    CHANGE_LINE_TYPEFACE, CHANGE_LINE_FONT_SIZE, UPDATE_STYLE_FROM_FETCH, UPDATE_LINE_FROM_FETCH, POST_OR_PATCH
+    CHANGE_LINE_STYLE, POPEDIT_CLOSE, POPEDIT_OPEN,
+    CHANGE_LINE_FONT_SIZE, UPDATE_STYLE_FROM_FETCH, UPDATE_LINE_FROM_FETCH, POST_OR_PATCH
 } from '../Actions/type.js'
 
-const translationTable = {
-    colorName: {
-        Black: "#222222",
-        Red: "#C41E3A",
-        Gold: "#FCC200"
-    },
-    fontCategory: {
-        Script: "EnglandHand",
-        "Sans Serif": "SourceSansPro",
-        Serif: "LibreBaskerville"
-    }
-}
-
 const defaultStyle = {
-    fontCategory: 'Script',
-    fontFamily: "EnglandHand",
     fontSize: "20px",
-    colorName: 'Black',
     color: "#222222",
+    fontFamily: "EnglandHand",
     textAlign: 'center'
 }
 
@@ -30,11 +15,9 @@ const initialState = {
     post: true,
     tone: 'Traditional',
     allOptions: {
-        backgroundColor: ["ivory"],
-        colorName: ["black", "gold", "red"],
-        color: ["#222222", "#FCC200", "#C41E3A"],
-        fontFamilyName: ["Script", "Sans Serif", "Serif"],
-        fontFamily: ["EnglandHand", "SourceSansPro", "LibreBaskerville"]
+        color: {Black: '#222222', Gold: '#FCC200', Red: '#C41E3A'},
+        fontFamily: {Script: 'EnglandHand', "Sans Serif": "SourceSansPro", Serif: "LibreBaskerville"},
+        textAlign: {Left: 'left', Center: 'center', Right: 'right'}
     },
     style: {
         ...defaultStyle,
@@ -52,130 +35,37 @@ const initialState = {
         open: false
     },
     editor: [
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            }, 
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
-        {
-            text: "",
-            lineStyle: {
-                ...defaultStyle
-            },
-        },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
+        {text: "", lineStyle: {...defaultStyle} },
     ]
 }
-
-function lineStyleTransform(attr, pay) {
-    //payload in an object: {attr: val}
-    // console.log('LST', attr, pay)
-    switch(attr) {
-        case 'fontCategory':
-            return {fontFamily: translationTable[attr][pay[attr]], fontCategory: pay.attr}
-        case 'colorName':
-            return {color: translationTable[attr][pay[attr]], colorName: pay.attr}
-        case 'textAlign':
-            return pay
-    }
-}
-
 
 const reducer = (oldState=initialState, action) => {
     switch (action.type) {
         case CHANGE_INVITATION_TONE:
             return {...oldState, tone: action.payload}
-        case POST_OR_PATCH:
-            return {...oldState, post: action.payload}
         case CHANGE_INVITATION_STYLE:
             return {...oldState, style: {...oldState.style, ...action.payload}}
         //LINE STYLE EDITOR
         case CHANGE_LINE_STYLE:
-            let delta = lineStyleTransform(action.attr, action.payload)
-            console.log(delta)
             return {...oldState, editor: 
                         {...oldState.editor, [action.lineNumber]: 
                             {...oldState.editor[action.lineNumber], lineStyle: 
                                 {...oldState.editor[action.lineNumber].lineStyle,
-                                    ...delta}}}}
+                                    ...action.payload}}}}
         case CHANGE_LINE_FONT_SIZE:
             let oldSize = oldState.editor[action.lineNumber].lineStyle.fontSize // '20px'
             let oldInt = parseInt(oldSize) // 20
@@ -184,30 +74,17 @@ const reducer = (oldState=initialState, action) => {
                         {...oldState.editor, [action.lineNumber]: 
                             {...oldState.editor[action.lineNumber], lineStyle: 
                                 {...oldState.editor[action.lineNumber].lineStyle, 
-                                    fontSize: newSize}}}}
-        case CHANGE_LINE_TYPEFACE: 
-            let newTypeFace = translationTable.fontTable[action.payload]
-            return {...oldState, editor: 
-                        {...oldState.editor, [action.lineNumber]: 
-                            {...oldState.editor[action.lineNumber], lineStyle: 
-                                {...oldState.editor[action.lineNumber].lineStyle, 
-                                    fontFamily: newTypeFace}}}}
-        case CHANGE_LINE_TYPE_COLOR:
-            let newColor = translationTable.colorTable[action.payload]
-            return {...oldState, editor: 
-                        {...oldState.editor, [action.lineNumber]: 
-                            {...oldState.editor[action.lineNumber], lineStyle: 
-                                {...oldState.editor[action.lineNumber].lineStyle, 
-                                    color: newColor}}}}
-                            
-        
+                                    fontSize: newSize}}}}        
         case CHANGE_LINE_TEXT:
             return {...oldState, editor: {...oldState.editor, [action.lineNumber]: {...oldState.editor[action.lineNumber], text: action.payload}}}
+        //POP EDITOR FOR STYLE CHANGE
         case POPEDIT_OPEN:
             return {...oldState, popEdit: {lineNumber: action.payload, open: true}}
         case POPEDIT_CLOSE:
             return {...oldState, popEdit: {...initialState.popEdit}}
         //FETCH PROCESS
+        case POST_OR_PATCH:
+            return {...oldState, post: action.payload}
         case UPDATE_STYLE_FROM_FETCH:
             return {...oldState, style: {...oldState.style, ...action.payload}}
         case UPDATE_LINE_FROM_FETCH:

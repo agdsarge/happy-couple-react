@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './ListView.css';
 
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import {Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core/';
 
 import ToDo from '../ToDo/ToDo';
 import GuestContainer from '../GuestList/GuestContainer';
