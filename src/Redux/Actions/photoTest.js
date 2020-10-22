@@ -14,16 +14,21 @@ function clearImageStore() {
     }
 }
 
-function postImagesToDB(photo) {
+function postImagesToDB(e, id, photo) {
     //
     return (dispatch) => {
+        e.preventDefault();
         const formData = new FormData();
-        formData.append('file', photo)
+        formData.append('wedding_id', id)
+        formData.append('caption', e.target.caption.value)
+        formData.append('image', photo)
+        console.log(e.target.image.value)
+        console.log(formData.image)
 
         fetch(`${API_ROOT}/photos`, {
             method: 'POST',
             headers: {
-          
+                // "Content-type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: formData
