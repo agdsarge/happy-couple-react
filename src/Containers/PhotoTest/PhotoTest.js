@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './PhotoTest.css';
-import {newImageToStore, postImagesToDB} from '../../Redux/Actions/photoTest';
+import {newImageToStore, postImageToDB} from '../../Redux/Actions/photoTest';
+import {API_ROOT} from '../../Constants/index'
 
 
 class PhotoTest extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            image: null,
+            lastPic: null
+        }
+    }
+
+    newImageChange(e) {
+        this.setState({image: e.target.files[0]})
+    }
+
+    newStateClear(e) {
+        this.setState({image: null})
+    }
+
+    getLastImage() {
+        fetch(`${API_ROOT}/test`)
+        .then(res => res.json())
+        .then(d => {
+            console.log(d)
+            this.setState({lastPic: d.image})
+            console.log(d.mesg)
+            console.log(d.image)
+        })
+    }
 
     componentDidMount() {
 
@@ -21,7 +48,11 @@ class PhotoTest extends Component {
                 >
                 </input>
                 <br></br>
-                <button onClick={() => this.props.handleSubmit(this.props.photos)}>Submit</button>
+                <button onClick={() => this.props.handleSubmit(this.state.image)}>Submit</button>
+                <hr />
+                <div className='lastPhotoPreview'>
+                    <button onClick={() => this.getLastImage()}>GET LAST PHOTO</button>
+                </div>
             </div>
         )
     }
@@ -36,7 +67,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleImageChange: (e) => {dispatch(newImageToStore(e))},
-        handleSubmit: (photos) => dispatch(postImagesToDB(photos))
+        handleSubmit: (photo) => dispatch(postImageToDB(photo))
     }
 }
 

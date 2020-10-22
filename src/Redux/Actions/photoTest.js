@@ -14,16 +14,17 @@ function clearImageStore() {
     }
 }
 
-function postImagesToDB(photo) {
+function postImageToDB(photo) {
     //
     return (dispatch) => {
         const formData = new FormData();
-        formData.append('file', photo)
+        formData.append('image', photo)
+        
 
         fetch(`${API_ROOT}/photos`, {
             method: 'POST',
             headers: {
-          
+                'Content-type': 'multipart/form-data',
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: formData
@@ -37,4 +38,4 @@ function postImagesToDB(photo) {
 }
 
 
-export {newImageToStore, clearImageStore, postImagesToDB}
+export {newImageToStore, clearImageStore, postImageToDB}
