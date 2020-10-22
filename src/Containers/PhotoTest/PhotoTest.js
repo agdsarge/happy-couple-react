@@ -8,6 +8,32 @@ import {API_ROOT} from '../../Constants/index'
 
 
 class PhotoTest extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            image: null,
+            lastPic: null
+        }
+    }
+
+    newImageChange(e) {
+        this.setState({image: e.target.files[0]})
+    }
+
+    newStateClear(e) {
+        this.setState({image: null})
+    }
+
+    getLastImage() {
+        fetch(`${API_ROOT}/test`)
+        .then(res => res.json())
+        .then(d => {
+            console.log(d)
+            this.setState({lastPic: d.image})
+            console.log(d.mesg)
+            console.log(d.image)
+        })
+    }
 
     constructor(props){
         super(props)

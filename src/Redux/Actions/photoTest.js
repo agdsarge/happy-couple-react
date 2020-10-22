@@ -14,11 +14,17 @@ function clearImageStore() {
     }
 }
 
+<<<<<<< HEAD
 function postImagesToDB(e, id, photo) {
     // can we do multiple formdata?
+=======
+function postImageToDB(photo) {
+    //
+>>>>>>> aa461ef... new photo test
     return (dispatch) => {
         e.preventDefault();
         const formData = new FormData();
+<<<<<<< HEAD
         formData.append('wedding_id', id)
         formData.append('caption', e.target.caption.value)
         formData.append('image', photo)
@@ -29,6 +35,15 @@ function postImagesToDB(e, id, photo) {
             method: 'POST',
             headers: {
                 // "Content-type": "multipart/form-data",
+=======
+        formData.append('image', photo)
+        
+
+        fetch(`${API_ROOT}/photos`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'multipart/form-data',
+>>>>>>> aa461ef... new photo test
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: formData
@@ -42,4 +57,4 @@ function postImagesToDB(e, id, photo) {
 }
 
 
-export {newImageToStore, clearImageStore, postImagesToDB}
+export {newImageToStore, clearImageStore, postImageToDB}
