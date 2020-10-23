@@ -13,9 +13,16 @@ class WeddingMenu extends Component {
         return(
             <div>
                 {array.length > 0 ? 
-                    array.sort((a, b) => a.wedding.wedding_date > b.wedding.wedding_date ? 1 : -1).map( wedding => <div key={wedding.wedding.id} onClick={() => this.props.handleClick(wedding)} >  < WeddingItem wedding={wedding} key={wedding.wedding.id} />  </div>) :
+                    array.sort((a, b) => a.wedding.wedding_date > b.wedding.wedding_date ? 1 : -1)
+                        .map( wedding => 
+                            <div 
+                                key={wedding.wedding.id} 
+                                onClick={() => this.props.handleClick(wedding)} > 
+                                    < WeddingItem wedding={wedding} key={wedding.wedding.id} />  
+                            </div>) 
+                            :
                     <div>{`No ${string} weddings`}</div>
-                    }
+                }
             </div>
         )
     }

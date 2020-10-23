@@ -12,11 +12,11 @@ import weddingPresentation from './weddingPresentation.js';
 import invitationGenerator from './invitationGenerator.js';
 import rsvp from './rsvp.js';
 import viewControl from './viewControl.js';
-import photoTest from './photoTest';
+import photoUpload from './photoUpload';
 
 export default combineReducers({
     login, auth, register, weddingDetails, wizard, 
     todo, viewControl, rsvp, weddings, guestList, 
     weddingPresentation, invitationGenerator,
-    photoTest
+    photoUpload
 })
