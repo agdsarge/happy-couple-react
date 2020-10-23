@@ -97,7 +97,6 @@ function fetchInvitation(wedID) {
         .then(res => res.json())
         .then(d => {
             if (!d.error) {
-                console.log("FRIDAY MORNING", d)
                 let {style_align, style_background_color, style_color, styled_lines} = d
                 const styleObj = {
                     textAlign: style_align,
