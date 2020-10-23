@@ -7,6 +7,7 @@ import ToDo from '../ToDo/ToDo';
 import GuestContainer from '../GuestList/GuestContainer';
 import InvitationGenerator from '../InvitationGenerator/InvitationGenerator';
 import PhotoTest from '../PhotoTest/PhotoTest';
+import Album from '../Album/Album';
 
 export default class ListView extends Component {
     render() {
@@ -34,6 +35,14 @@ export default class ListView extends Component {
                     </AccordionSummary>
                     <AccordionDetails>
                         <InvitationGenerator />
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion >
+                    <AccordionSummary>
+                        <h2>Photo Albums</h2>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Album/>
                     </AccordionDetails>
                 </Accordion>
                 <Accordion >
